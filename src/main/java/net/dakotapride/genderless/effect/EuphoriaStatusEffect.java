@@ -24,10 +24,8 @@ public class EuphoriaStatusEffect extends MobEffect {
         final List<Monster> list = livingEntity.level().getEntitiesOfClass(Monster.class,
                 livingEntity.getBoundingBox().inflate(4F * (amplifier + 1)), Objects::nonNull);
         list.forEach(monster -> {
-            if (livingEntity instanceof Player player) {
-                if (monster.getTarget() == player) {
-                    monster.setAggressive(false);
-                }
+            if (livingEntity instanceof Player) {
+                monster.setAggressive(false);
             }
         });
     }
