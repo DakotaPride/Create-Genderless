@@ -3,6 +3,12 @@ package net.dakotapride.genderless.effect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+
+import java.util.List;
+import java.util.Objects;
 
 public class EuphoriaStatusEffect extends MobEffect {
     public EuphoriaStatusEffect() {
@@ -10,10 +16,20 @@ public class EuphoriaStatusEffect extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
-        if (pLivingEntity.getHealth() < pLivingEntity.getMaxHealth()) {
-            pLivingEntity.heal(1.0F);
+    public void applyEffectTick(LivingEntity livingEntity, int amplifier) {
+        if (livingEntity.getHealth() < livingEntity.getMaxHealth()) {
+            livingEntity.heal(1.0F);
         }
+
+        final List<Monster> list = livingEntity.level().getEntitiesOfClass(Monster.class,
+                livingEntity.getBoundingBox().inflate(4F * amplifier), Objects::nonNull);
+        list.forEach(monster -> {
+            if (livingEntity instanceof Player player) {
+                if (monster.getTarget() == player) {
+                    monster.setAggressive(false);
+                }
+            }
+        });
     }
 
     @Override
