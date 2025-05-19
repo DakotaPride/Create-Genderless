@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "genderless:block/binary_fluid"
+    }
+  }
+}

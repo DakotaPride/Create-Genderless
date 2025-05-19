@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "genderless:genderfluid_pill"
+    },
+    {
+      "item": "genderless:genderfluid_pill"
+    },
+    {
+      "item": "genderless:genderfluid_pill"
+    },
+    {
+      "item": "genderless:genderfluid_pill"
+    },
+    {
+      "item": "genderless:genderfluid_pill"
+    },
+    {
+      "item": "genderless:genderfluid_pill"
+    },
+    {
+      "item": "genderless:genderfluid_pill"
+    },
+    {
+      "item": "genderless:genderfluid_pill"
+    },
+    {
+      "item": "genderless:genderfluid_pill"
+    }
+  ],
+  "result": {
+    "item": "genderless:genderfluid_pill_box"
+  }
+}

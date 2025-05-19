@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "genderless:block/binary_block"
+      },
+      {
+        "model": "genderless:block/binary_block_alt"
+      },
+      {
+        "model": "genderless:block/binary_block_blank"
+      }
+    ]
+  }
+}

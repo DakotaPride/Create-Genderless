@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "genderless:block/genderless_pill_box"
+    }
+  }
+}

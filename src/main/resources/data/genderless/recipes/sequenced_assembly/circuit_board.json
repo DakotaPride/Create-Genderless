@@ -1,0 +1,78 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "create:iron_sheet"
+  },
+  "loops": 4,
+  "results": [
+    {
+      "item": "genderless:circuit_board"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "genderless:incomplete_circuit_board"
+        },
+        {
+          "item": "create:copper_sheet"
+        }
+      ],
+      "results": [
+        {
+          "item": "genderless:incomplete_circuit_board"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "genderless:incomplete_circuit_board"
+        },
+        {
+          "item": "minecraft:redstone"
+        }
+      ],
+      "results": [
+        {
+          "item": "genderless:incomplete_circuit_board"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "genderless:incomplete_circuit_board"
+        },
+        {
+          "tag": "forge:glass"
+        }
+      ],
+      "results": [
+        {
+          "item": "genderless:incomplete_circuit_board"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "genderless:incomplete_circuit_board"
+        }
+      ],
+      "results": [
+        {
+          "item": "genderless:incomplete_circuit_board"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "genderless:incomplete_circuit_board"
+  }
+}

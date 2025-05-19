@@ -1,0 +1,38 @@
+{
+  "parent": "genderless:non_binary_fluid",
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.genderless.bra_of_holding.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "genderless:bra_of_holding"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.genderless.bra_of_holding.title"
+    }
+  },
+  "criteria": {
+    "bra_of_holding": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "genderless:bra_of_holding"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "bra_of_holding"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

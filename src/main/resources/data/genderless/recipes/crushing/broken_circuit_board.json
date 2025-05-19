@@ -1,0 +1,24 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "genderless:circuit_board"
+    }
+  ],
+  "processingTime": 200,
+  "results": [
+    {
+      "item": "genderless:broken_circuit_board"
+    },
+    {
+      "chance": 0.35,
+      "count": 2,
+      "item": "minecraft:redstone"
+    },
+    {
+      "chance": 0.05,
+      "count": 3,
+      "item": "create:copper_nugget"
+    }
+  ]
+}

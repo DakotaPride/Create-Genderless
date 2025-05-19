@@ -1,0 +1,38 @@
+{
+  "parent": "genderless:genderless",
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.genderless.circuit_board.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "genderless:circuit_board"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.genderless.circuit_board.title"
+    }
+  },
+  "criteria": {
+    "circuit_board": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "genderless:circuit_board"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "circuit_board"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "genderless:non_binary_fluid",
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.genderless.genderfluid_pill.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "genderless:genderfluid_pill"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.genderless.genderfluid_pill.title"
+    }
+  },
+  "criteria": {
+    "genderfluid_pill": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "genderless:genderfluid_pill"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "genderfluid_pill"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

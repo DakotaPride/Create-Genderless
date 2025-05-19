@@ -1,0 +1,29 @@
+{
+  "parent": "genderless:eat_circuitry",
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.genderless.all_gender_effects.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "item": "minecraft:barrier"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.genderless.all_gender_effects.title"
+    }
+  },
+  "criteria": {
+    "all_gender_effects": {
+      "trigger": "genderless:all_gender_effects_applied"
+    }
+  },
+  "requirements": [
+    [
+      "all_gender_effects"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

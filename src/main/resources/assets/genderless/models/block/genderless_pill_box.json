@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "up": "genderless:block/genderless_pill_box/top",
+    "down": "genderless:block/genderless_pill_box/bottom",
+    "north": "genderless:block/genderless_pill_box/north",
+    "east": "genderless:block/genderless_pill_box/east",
+    "south": "genderless:block/genderless_pill_box/south",
+    "west": "genderless:block/genderless_pill_box/west",
+    "particle": "genderless:block/genderless_pill_box/top"
+  }
+}

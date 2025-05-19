@@ -1,0 +1,29 @@
+{
+  "type": "create:mixing",
+  "heatRequirement": "superheated",
+  "ingredients": [
+    {
+      "item": "genderless:binary_block"
+    },
+    {
+      "item": "genderless:binary_block"
+    },
+    {
+      "item": "genderless:binary_block"
+    },
+    {
+      "item": "genderless:binary_block"
+    },
+    {
+      "amount": 100,
+      "fluid": "genderless:non_binary_fluid",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "amount": 100,
+      "fluid": "genderless:01000101"
+    }
+  ]
+}

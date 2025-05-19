@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "minecraft:chorus_fruit"
+    },
+    {
+      "amount": 250,
+      "fluid": "estrogen:gender_fluid",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "item": "genderless:genderfluid_pill"
+    }
+  ]
+}

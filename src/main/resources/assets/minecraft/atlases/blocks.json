@@ -1,0 +1,40 @@
+{
+  "sources": [
+    {
+      "type": "single",
+      "resource": "genderless:block/binary_fluid_flow"
+    },
+    {
+      "type": "single",
+      "resource": "genderless:fluid/binary_fluid_flow"
+    },
+    {
+      "type": "single",
+      "resource": "genderless:fluid/binary_fluid_still"
+    },
+    {
+      "type": "single",
+      "resource": "genderless:fluid/non_binary_fluid_flow"
+    },
+    {
+      "type": "single",
+      "resource": "genderless:fluid/non_binary_fluid_still"
+    },
+    {
+      "type": "single",
+      "resource": "genderless:fluid/01000101_flow"
+    },
+    {
+      "type": "single",
+      "resource": "genderless:fluid/01000101_still"
+    },
+    {
+      "type": "single",
+      "resource": "genderless:fluid/void_flow"
+    },
+    {
+      "type": "single",
+      "resource": "genderless:fluid/void_still"
+    }
+  ]
+}

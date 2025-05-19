@@ -1,0 +1,38 @@
+{
+  "parent": "genderless:genderless",
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.genderless.binary_fluid.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "genderless:binary_fluid_bucket"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.genderless.binary_fluid.title"
+    }
+  },
+  "criteria": {
+    "binary_fluid": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "genderless:binary_fluid_bucket"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "binary_fluid"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
