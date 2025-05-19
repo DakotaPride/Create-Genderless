@@ -6,6 +6,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.List;
 import java.util.Objects;
@@ -25,6 +27,7 @@ public class EuphoriaStatusEffect extends MobEffect {
                 livingEntity.getBoundingBox().inflate(4F * (amplifier + 1)), Objects::nonNull);
         list.forEach(monster -> {
             if (livingEntity instanceof Player) {
+                monster.setTarget(null);
                 monster.setAggressive(false);
             }
         });
