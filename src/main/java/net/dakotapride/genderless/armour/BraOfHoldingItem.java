@@ -37,6 +37,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -181,9 +182,22 @@ public class BraOfHoldingItem extends Item implements ICurioItem, BotariumFluidI
 
     @Override
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
-        ICurioItem.super.onEquip(slotContext, prevStack, stack);
+        Level level = slotContext.entity().level();
+        ItemFluidContainer itemFluidManager = this.getFluidContainer(stack);
+        if (!level.isClientSide) {
+            LivingEntity var6 = slotContext.entity();
+            if (var6 instanceof Player player) {
+                if ((itemFluidManager.getFluids().get(0)).getFluidAmount() > 0L) {
+                    this.addEffect(player, level, GenderlessStatusEffects.EUPHORIA.get());
+                }
+            }
+        }
 
         equipped = true;
+    }
+
+    public void addEffect(Player player, Level level, MobEffect effect) {
+        player.addEffect(new MobEffectInstance(effect, 520, 0, false, false, false));
     }
 
     @Override
@@ -195,20 +209,14 @@ public class BraOfHoldingItem extends Item implements ICurioItem, BotariumFluidI
 
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
-        Entity entity = slotContext.entity();
         Level level = slotContext.entity().level();
-        if (entity instanceof LivingEntity livingEntity) {
-            if (livingEntity instanceof Player player)
-                tick(level, player);
-        }
 
         ItemFluidContainer itemFluidManager = this.getFluidContainer(stack);
 
         if (!level.isClientSide) {
             LivingEntity var6 = slotContext.entity();
-            if (var6 instanceof Player) {
-                Player player = (Player)var6;
-                if ((itemFluidManager.getFluids().get(0)).getFluidAmount() > 0L) {
+            if (var6 instanceof Player player) {
+                if (itemFluidManager.getFluids().get(0).getFluidAmount() > 0L) {
                     tick(level, player);
 
                     if (level.getGameTime() % 72L == 0L && !player.isCreative()) {
@@ -222,6 +230,10 @@ public class BraOfHoldingItem extends Item implements ICurioItem, BotariumFluidI
         ICurioItem.super.curioTick(slotContext, stack);
     }
 
+    public void addEffect(Player player, Level level, MobEffect effect, int duration, float amplifier, boolean show) {
+        player.addEffect(new MobEffectInstance(effect, 520, 0, false, false, show));
+    }
+
     public void tick(Level level, Player player) {
         if (isEstrogenLoaded() && !level.isClientSide) {
             if (player.hasEffect(EstrogenEffects.ESTROGEN_EFFECT.get())) {
@@ -233,7 +245,9 @@ public class BraOfHoldingItem extends Item implements ICurioItem, BotariumFluidI
         if (!level.isClientSide && player.hasEffect(GenderlessStatusEffects.GENDERFLUIDITY.get()))
             player.removeEffect(GenderlessStatusEffects.GENDERFLUIDITY.get());
         if (!level.isClientSide)
-            player.addEffect(new MobEffectInstance(GenderlessStatusEffects.EUPHORIA.get(), 60, 1, false, false, true));
+            if (level.getGameTime() % 300L == 0L) {
+                this.addEffect(player, level, GenderlessStatusEffects.EUPHORIA.get(), 60, 1, true);
+            }
     }
 
 
