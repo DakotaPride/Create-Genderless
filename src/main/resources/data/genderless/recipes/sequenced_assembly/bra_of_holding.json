@@ -1,12 +1,24 @@
 {
   "type": "create:sequenced_assembly",
-  "ingredient": {
-    "item": "minecraft:leather"
-  },
+  "ingredient": [
+    {
+      "item": "minecraft:leather"
+    }
+  ],
   "loops": 1,
   "results": [
     {
-      "item": "genderless:bra_of_holding"
+      "item": "genderless:bra_of_holding",
+      "nbt": {
+        "BotariumData": {
+          "StoredFluids": [
+            {
+              "Amount": "81000L",
+              "Fluid": "genderless:void"
+            }
+          ]
+        }
+      }
     }
   ],
   "sequence": [
@@ -46,7 +58,7 @@
           "item": "genderless:incomplete_bra_of_holding"
         },
         {
-          "item": "minecraft:string"
+          "item": "estrogen:moth_fuzz"
         }
       ],
       "results": [

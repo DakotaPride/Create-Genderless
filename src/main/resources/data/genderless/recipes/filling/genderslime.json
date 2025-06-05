@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "minecraft:slime_ball"
+    },
+    {
+      "amount": 100,
+      "fluid": "estrogen:gender_fluid",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "item": "genderless:genderslime"
+    }
+  ]
+}

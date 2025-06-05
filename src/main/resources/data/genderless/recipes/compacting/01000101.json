@@ -1,6 +1,6 @@
 {
-  "type": "create:mixing",
-  "heatRequirement": "superheated",
+  "type": "create:compacting",
+  "heatRequirement": "heated",
   "ingredients": [
     {
       "item": "genderless:binary_block"

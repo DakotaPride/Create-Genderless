@@ -2,6 +2,7 @@ package net.dakotapride.genderless.init;
 
 import dev.mayaqq.estrogen.registry.EstrogenPotions;
 import net.dakotapride.genderless.CreateGenderlessMod;
+import net.dakotapride.genderless.item.GenderlessPatchItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -22,18 +23,25 @@ public class GenderlessCreativeModeTabs {
                     .title(Component.translatable("itemGroup.genderless.create_genderless_tab"))
                     .displayItems((parameters, output) -> {
                         output.accept(GenderlessItems.GENDERLESS_PILL);
+                        output.accept(GenderlessItems.GENDERLESS_PATCH);
+                        output.accept(GenderlessItems.GENDERLESS_PATCH.get().getFullStack());
                         output.accept(GenderlessItems.GENDERFLUID_PILL);
+                        output.accept(GenderlessItems.GENDERFLUID_PATCH);
+                        output.accept(GenderlessItems.GENDERFLUID_PATCH.get().getFullStack());
                         output.accept(GenderlessItems.CIRCUIT_BOARD);
                         output.accept(GenderlessItems.BROKEN_CIRCUIT_BOARD);
+                        output.accept(GenderlessItems.GENDERSLIME);
+                        output.accept(GenderlessBlocks.GENDERSLIME);
                         output.accept(GenderlessItems.BRA_OF_HOLDING);
+                        output.accept(GenderlessItems.BRA_OF_HOLDING.get().getFullStack());
                         output.accept(GenderlessBlocks.GENDERLESS_PILL_BOX);
                         output.accept(GenderlessBlocks.GENDERFLUID_PILL_BOX);
                         output.accept(GenderlessBlocks.BINARY_BLOCK);
                         output.accept(tippedArrow(GenderlessPotions.GENDERLESS_POTION.get()));
-                        output.accept(GenderlessFluids.BINARY_FLUID.get().getBucket());
-                        output.accept(GenderlessFluids.NON_BINARY_FLUID.get().getBucket());
-                        output.accept(GenderlessFluids.ZERO_ONE_ZERO_ZERO_ZERO_ONE_ZERO_ONE.get().getBucket());
-                        output.accept(GenderlessFluids.VOID.get().getBucket());
+                        output.accept(BotariumGenderlessFluids.BINARY_FLUID.get().getBucket());
+                        output.accept(BotariumGenderlessFluids.NON_BINARY_FLUID.get().getBucket());
+                        output.accept(BotariumGenderlessFluids.ZERO_ONE_ZERO_ZERO_ZERO_ONE_ZERO_ONE.get().getBucket());
+                        output.accept(BotariumGenderlessFluids.VOID.get().getBucket());
                     })
                     .build());
 

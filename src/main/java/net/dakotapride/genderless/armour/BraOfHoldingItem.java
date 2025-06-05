@@ -2,13 +2,24 @@ package net.dakotapride.genderless.armour;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import com.simibubi.create.AllEnchantments;
 import dev.mayaqq.estrogen.registry.EstrogenAttributes;
 import dev.mayaqq.estrogen.registry.EstrogenEffects;
 import dev.mayaqq.estrogen.registry.items.GenderChangePotionItem;
 import dev.mayaqq.estrogen.utils.Time;
+import earth.terrarium.botarium.common.fluid.FluidConstants;
+import earth.terrarium.botarium.common.fluid.base.BotariumFluidItem;
+import earth.terrarium.botarium.common.fluid.base.FluidContainer;
+import earth.terrarium.botarium.common.fluid.base.FluidHolder;
+import earth.terrarium.botarium.common.fluid.base.ItemFluidContainer;
+import earth.terrarium.botarium.common.fluid.impl.SimpleFluidContainer;
+import earth.terrarium.botarium.common.fluid.impl.WrappedItemFluidContainer;
+import earth.terrarium.botarium.common.item.ItemStackHolder;
 import net.dakotapride.genderless.CreateGenderlessMod;
+import net.dakotapride.genderless.init.BotariumGenderlessFluids;
 import net.dakotapride.genderless.init.GenderlessPartialModels;
 import net.dakotapride.genderless.init.GenderlessStatusEffects;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HumanoidModel;
@@ -23,6 +34,7 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -32,21 +44,31 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.model.BakedModelWrapper;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
+import java.awt.*;
+import java.util.List;
+
 import static net.dakotapride.genderless.CreateGenderlessMod.isEstrogenLoaded;
 
-public class BraOfHoldingItem extends Item implements ICurioItem {
+public class BraOfHoldingItem extends Item implements ICurioItem, BotariumFluidItem<WrappedItemFluidContainer> {
     public BraOfHoldingItem(Properties properties) {
         super(properties.rarity(Rarity.UNCOMMON));
         DispenserBlock.registerBehavior(this, ArmorItem.DISPENSE_ITEM_BEHAVIOR);
+    }
+
+    public long getMaxCapacity(ItemStack stack) {
+        return FluidConstants.getBucketAmount() + FluidConstants.getBucketAmount() / 2L * (long) EnchantmentHelper.getEnchantments(stack).getOrDefault(AllEnchantments.CAPACITY.get(), 0);
     }
 
     @Override
@@ -92,32 +114,6 @@ public class BraOfHoldingItem extends Item implements ICurioItem {
                                                                               float ageInTicks,
                                                                               float netHeadYaw,
                                                                               float headPitch) {
-
-//            if (slotContext.entity().getItemBySlot(EquipmentSlot.CHEST).isEmpty()) {
-//                // Prepare values for transformation
-//                model.setupAnim(slotContext.entity(), limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-//                model.prepareMobModel(slotContext.entity(), limbSwing, limbSwingAmount, partialTicks);
-//                ICurioRenderer.followBodyRotations(slotContext.entity(), model);
-//
-//                // Translate and rotate with our head
-//                matrixStack.pushPose();
-//                matrixStack.translate(model.body.x / 16.0, model.body.y / 16.0, model.body.z / 16.0);
-//                matrixStack.mulPose(Axis.YP.rotation(model.body.yRot));
-//                matrixStack.mulPose(Axis.XP.rotation(model.body.xRot));
-//
-//                // Translate and scale to our head
-//                matrixStack.translate(0, 0.33, 0);
-//                matrixStack.mulPose(Axis.ZP.rotationDegrees(180.0f));
-//                matrixStack.scale(0.625f, 0.625f, 0.625f);
-//
-//
-//                // Render
-//                Minecraft mc = Minecraft.getInstance();
-//                mc.getItemRenderer()
-//                        .renderStatic(stack, ItemDisplayContext.HEAD, light, OverlayTexture.NO_OVERLAY, matrixStack,
-//                                renderTypeBuffer, mc.level, 0);
-//                matrixStack.popPose();
-//            }
 
             // Prepare values for transformation
             model.setupAnim(slotContext.entity(), limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
@@ -168,16 +164,20 @@ public class BraOfHoldingItem extends Item implements ICurioItem {
 
     }
 
-//    @Override
-//    public void inventoryTick(ItemStack stack, Level level, Entity pEntity, int pSlotId, boolean pIsSelected) {
-//        if (pEntity instanceof LivingEntity livingEntity) {
-//            if (pSlotId == EquipmentSlot.CHEST.getIndex())
-//                if (livingEntity instanceof Player player)
-//                    tick(level, player);
-//        }
-//        super.inventoryTick(stack, level, pEntity, pSlotId, pIsSelected);
-//    }
-
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
+        super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
+        ItemStackHolder holder = new ItemStackHolder(stack);
+        ItemFluidContainer itemFluidManager = FluidContainer.of(holder);
+        if (itemFluidManager != null) {
+            long amount = FluidConstants.toMillibuckets((itemFluidManager.getFluids().get(0)).getFluidAmount());
+            long amountCapacity = FluidConstants.toMillibuckets(itemFluidManager.getTankCapacity(0));
+            String fluidString = Component.translatable("fluid_type.genderless.void").getString();
+            tooltipComponents.add(Component.literal(" "));
+            tooltipComponents.add(Component.literal(String.format("%s: %smb / %smb", fluidString, amount, amountCapacity)).setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)));
+            tooltipComponents.add(Component.literal(" "));
+        }
+    }
 
     @Override
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
@@ -201,6 +201,24 @@ public class BraOfHoldingItem extends Item implements ICurioItem {
             if (livingEntity instanceof Player player)
                 tick(level, player);
         }
+
+        ItemFluidContainer itemFluidManager = this.getFluidContainer(stack);
+
+        if (!level.isClientSide) {
+            LivingEntity var6 = slotContext.entity();
+            if (var6 instanceof Player) {
+                Player player = (Player)var6;
+                if ((itemFluidManager.getFluids().get(0)).getFluidAmount() > 0L) {
+                    tick(level, player);
+
+                    if (level.getGameTime() % 72L == 0L && !player.isCreative()) {
+                        itemFluidManager.extractFromSlot(0, FluidHolder.of(BotariumGenderlessFluids.VOID.get(), FluidConstants.getBucketAmount() / 1000L), false);
+                        itemFluidManager.serialize(stack.getOrCreateTag());
+                    }
+                }
+            }
+        }
+
         ICurioItem.super.curioTick(slotContext, stack);
     }
 
@@ -216,5 +234,36 @@ public class BraOfHoldingItem extends Item implements ICurioItem {
             player.removeEffect(GenderlessStatusEffects.GENDERFLUIDITY.get());
         if (!level.isClientSide)
             player.addEffect(new MobEffectInstance(GenderlessStatusEffects.EUPHORIA.get(), 60, 1, false, false, true));
+    }
+
+
+    public ItemStack getFullStack() {
+        ItemStack stack = this.getDefaultInstance();
+        ItemFluidContainer itemFluidManager = this.getFluidContainer(stack);
+        itemFluidManager.insertFluid(FluidHolder.of(BotariumGenderlessFluids.VOID.get(), FluidConstants.getBucketAmount()), false);
+        itemFluidManager.serialize(stack.getOrCreateTag());
+        return stack;
+    }
+
+    public long getAmount(ItemStack stack) {
+        ItemStackHolder holder = new ItemStackHolder(stack);
+        ItemFluidContainer itemFluidManager = FluidContainer.of(holder);
+        return (itemFluidManager.getFluids().get(0)).getFluidAmount();
+    }
+
+    public WrappedItemFluidContainer getFluidContainer(ItemStack stack) {
+        return new WrappedItemFluidContainer(stack, new SimpleFluidContainer(this.getMaxCapacity(stack), 1, (amount, fluid) -> fluid.is(BotariumGenderlessFluids.VOID.get())));
+    }
+
+    public boolean isBarVisible(@NotNull ItemStack stack) {
+        return this.getAmount(stack) != this.getMaxCapacity(stack);
+    }
+
+    public int getBarWidth(@NotNull ItemStack stack) {
+        return (int)((double)this.getAmount(stack) / (double)this.getMaxCapacity(stack) * (double)13.0F);
+    }
+
+    public int getBarColor(@NotNull ItemStack stack) {
+        return new Color(4, 0, 61).getRGB();
     }
 }

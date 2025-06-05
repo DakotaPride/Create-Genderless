@@ -24,8 +24,9 @@ public class ErrorStatusEffect extends MobEffect {
     public void applyEffectTick(LivingEntity entity, int pAmplifier) {
         if (entity instanceof ServerPlayer player) {
             if (
-                    (isEstrogenLoaded() && player.hasEffect(EstrogenEffects.ESTROGEN_EFFECT.get()))
-                    && (isTestosteroneLoaded() && player.hasEffect(testosteroneModEffects.TESTOSTERONE_EFFECT.get()))
+                    // Cannot require *every* gender effect due to Testosterone removing the Girl Power effect (and for some reason it really doesn't like mixining into the class to prevent this, so RIP)
+                    ((isEstrogenLoaded() && player.hasEffect(EstrogenEffects.ESTROGEN_EFFECT.get()))
+                    || (isTestosteroneLoaded() && player.hasEffect(testosteroneModEffects.TESTOSTERONE_EFFECT.get())))
                     && player.hasEffect(GenderlessStatusEffects.GENDERLESS_POWER.get())
                     && player.hasEffect(GenderlessStatusEffects.GENDERFLUIDITY.get())
             ) {
