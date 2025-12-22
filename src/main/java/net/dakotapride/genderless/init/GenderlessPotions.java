@@ -1,6 +1,5 @@
 package net.dakotapride.genderless.init;
 
-import dev.mayaqq.estrogen.registry.EstrogenEffects;
 import net.dakotapride.genderless.CreateGenderlessMod;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffectInstance;

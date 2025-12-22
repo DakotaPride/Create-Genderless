@@ -1,6 +1,5 @@
 package net.dakotapride.genderless.init;
 
-import dev.mayaqq.estrogen.registry.EstrogenPotions;
 import net.dakotapride.genderless.CreateGenderlessMod;
 import net.dakotapride.genderless.item.GenderlessPatchItem;
 import net.minecraft.core.registries.Registries;
@@ -38,10 +37,10 @@ public class GenderlessCreativeModeTabs {
                         output.accept(GenderlessBlocks.GENDERFLUID_PILL_BOX);
                         output.accept(GenderlessBlocks.BINARY_BLOCK);
                         output.accept(tippedArrow(GenderlessPotions.GENDERLESS_POTION.get()));
-                        output.accept(BotariumGenderlessFluids.BINARY_FLUID.get().getBucket());
-                        output.accept(BotariumGenderlessFluids.NON_BINARY_FLUID.get().getBucket());
-                        output.accept(BotariumGenderlessFluids.ZERO_ONE_ZERO_ZERO_ZERO_ONE_ZERO_ONE.get().getBucket());
-                        output.accept(BotariumGenderlessFluids.VOID.get().getBucket());
+                        output.accept(BotariumGenderlessFluids.BINARY_FLUID.getBucket());
+                        output.accept(BotariumGenderlessFluids.NON_BINARY_FLUID.getBucket());
+                        output.accept(BotariumGenderlessFluids.ZERO_ONE_ZERO_ZERO_ZERO_ONE_ZERO_ONE.getBucket());
+                        output.accept(BotariumGenderlessFluids.VOID.getBucket());
                     })
                     .build());
 

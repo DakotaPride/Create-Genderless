@@ -1,6 +1,6 @@
 package net.dakotapride.genderless.effect;
 
-import dev.mayaqq.estrogen.registry.items.GenderChangePotionItem;
+import dev.mayaqq.estrogen.content.items.GenderChangePotionItem;
 import net.dakotapride.genderless.init.GenderlessKeybindings;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -24,7 +24,7 @@ public class GenderfluidityPowerStatusEffect extends MobEffect {
         Level level = entity.level();
 
         if (isEstrogenLoaded() && !level.isClientSide() && GenderlessKeybindings.ACTIVATE_GENDER_SWITCH.getKeybind().consumeClick()) {
-            GenderChangePotionItem.changeGender(level, entity);
+            GenderChangePotionItem.Companion.changeGender(level, entity);
             if (entity instanceof ServerPlayer player)
                 player.displayClientMessage(Component.translatable("text.genderless.genderfluidity.gender_switch"), true);
             // particle require to be clientside, the method above require no clientside, conflict with each other for some reason with the inclusion of a keybind

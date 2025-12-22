@@ -2,7 +2,7 @@ package net.dakotapride.genderless.item;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import dev.mayaqq.estrogen.config.EstrogenConfig;
+import dev.mayaqq.estrogen.config.EstrogenClientConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.PlayerModel;
@@ -31,7 +31,7 @@ public class GenericPatchItemRenderer implements ICurioRenderer {
                                                                           float netHeadYaw,
                                                                           float headPitch) {
         if (renderLayerParent.getModel() instanceof PlayerModel<? extends LivingEntity> playerModel) {
-            if (!(Boolean) EstrogenConfig.client().estrogenPatchRender.get()) {
+            if (!(Boolean) EstrogenClientConfig.Accessories.INSTANCE.getRenderEstrogenPatches()) {
                 return;
             }
 

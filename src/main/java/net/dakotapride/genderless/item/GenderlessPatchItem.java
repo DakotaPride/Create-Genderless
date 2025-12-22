@@ -52,7 +52,7 @@ public class GenderlessPatchItem extends Item implements ICurioItem, BotariumFlu
                     }
 
                     if (level.getGameTime() % 72L == 0L && !player.isCreative()) {
-                        itemFluidManager.extractFromSlot(0, FluidHolder.of(BotariumGenderlessFluids.NON_BINARY_FLUID.get(), FluidConstants.getBucketAmount() / 1000L), false);
+                        itemFluidManager.extractFromSlot(0, FluidHolder.of(BotariumGenderlessFluids.NON_BINARY_FLUID.getSource(), FluidConstants.getBucketAmount() / 1000L), false);
                         itemFluidManager.serialize(stack.getOrCreateTag());
                     }
                 }
@@ -101,7 +101,7 @@ public class GenderlessPatchItem extends Item implements ICurioItem, BotariumFlu
     public ItemStack getFullStack() {
         ItemStack stack = this.getDefaultInstance();
         ItemFluidContainer itemFluidManager = this.getFluidContainer(stack);
-        itemFluidManager.insertFluid(FluidHolder.of(BotariumGenderlessFluids.NON_BINARY_FLUID.get(), FluidConstants.getBucketAmount()), false);
+        itemFluidManager.insertFluid(FluidHolder.of(BotariumGenderlessFluids.NON_BINARY_FLUID.getSource(), FluidConstants.getBucketAmount()), false);
         itemFluidManager.serialize(stack.getOrCreateTag());
         return stack;
     }
@@ -113,7 +113,7 @@ public class GenderlessPatchItem extends Item implements ICurioItem, BotariumFlu
     }
 
     public WrappedItemFluidContainer getFluidContainer(ItemStack stack) {
-        return new WrappedItemFluidContainer(stack, new SimpleFluidContainer(this.getMaxCapacity(stack), 1, (amount, fluid) -> fluid.is(BotariumGenderlessFluids.NON_BINARY_FLUID.get())));
+        return new WrappedItemFluidContainer(stack, new SimpleFluidContainer(this.getMaxCapacity(stack), 1, (amount, fluid) -> fluid.is(BotariumGenderlessFluids.NON_BINARY_FLUID.getSource())));
     }
 
     public boolean isBarVisible(@NotNull ItemStack stack) {
