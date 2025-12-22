@@ -1,6 +1,6 @@
 package net.dakotapride.genderless.init;
 
-import com.jozufozu.flywheel.core.PartialModel;
+import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import net.dakotapride.genderless.CreateGenderlessMod;
 
 public class GenderlessPartialModels {
@@ -9,7 +9,7 @@ public class GenderlessPartialModels {
     public static final PartialModel GENDERSLIME = block("genderslime");
 
     private static PartialModel block(String path) {
-        return new PartialModel(CreateGenderlessMod.asResource("block/" + path));
+        return PartialModel.of(CreateGenderlessMod.asResource("block/" + path));
     }
 
     public static void register() {}

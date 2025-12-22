@@ -2,8 +2,9 @@ package net.dakotapride.genderless;
 
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.item.ItemDescription;
-import com.simibubi.create.foundation.item.TooltipHelper;
-import dev.mayaqq.estrogen.registry.EstrogenItems;
+
+import dev.mayaqq.estrogen.content.EstrogenItems;
+import net.createmod.catnip.lang.FontHelper;
 import net.dakotapride.genderless.advancement.GenderlessAdvancementUtils;
 import net.dakotapride.genderless.armour.BraOfHoldingItem;
 import net.dakotapride.genderless.client.overlay.GenderlessOverlayUtils;
@@ -35,19 +36,20 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
-import uwu.serenity.critter.RegistryManager;
+import uwu.serenity.kritter.RegistryManager;
+import uwu.serenity.kritter.forge.RegistryManagerImpl;
 
 @Mod(CreateGenderlessMod.MOD_ID)
-public class CreateGenderlessMod {
+public class CreateGenderlessMod{
     public static final String MOD_ID = "genderless";
     public static final String NAME = "Create: Genderless";
 
     public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MOD_ID);
-    public static final RegistryManager REGISTRIES = RegistryManager.create(MOD_ID);
+    public static final RegistryManager REGISTRIES = new RegistryManagerImpl(MOD_ID);
 
     static {
         REGISTRATE.setTooltipModifierFactory(item ->
-                new ItemDescription.Modifier(item, TooltipHelper.Palette.STANDARD_CREATE));
+                new ItemDescription.Modifier(item, FontHelper.Palette.STANDARD_CREATE));
     }
 
     public static ResourceLocation asResource(String path) {
@@ -68,16 +70,17 @@ public class CreateGenderlessMod {
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 
         REGISTRATE.registerEventListeners(modEventBus);
-        modEventBus.register(CreateGenderlessMod.REGISTRIES);
+//        modEventBus.register(CreateGenderlessMod.REGISTRIES);
 
+        BotariumGenderlessFluids.FLUID_REGISTRAR.register();
         GenderlessItems.register();
         GenderlessBlocks.register();
         //GenderlessFluids.register();
-        BotariumGenderlessFluids.FLUIDS.register();
         GenderlessCreativeModeTabs.register(modEventBus);
         GenderlessStatusEffects.register(modEventBus);
         GenderlessPotions.register(modEventBus);
         GenderlessAdvancementUtils.register();
+        BotariumGenderlessFluids.FLUIDS.initialize();
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 
@@ -85,17 +88,11 @@ public class CreateGenderlessMod {
         MinecraftForge.EVENT_BUS.register(this);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> CreateGenderlessClient.onCtorClient(modEventBus, forgeEventBus));
-
-        modEventBus.addListener(CreateGenderlessMod::onInterModEnqueue);
     }
 
     private void setup(FMLCommonSetupEvent event) {
-        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.MUNDANE)), Ingredient.of(GenderlessItems.GENDERSLIME), EstrogenItems.GENDER_CHANGE_POTION.asStack());
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.MUNDANE)), Ingredient.of(GenderlessItems.GENDERSLIME), EstrogenItems.INSTANCE.getGenderChangePotion().getDefaultInstance());
         //PotionBrewing.(GenderlessItems.GENDERSLIME.asStack(), EstrogenItems.GENDER_CHANGE_POTION.asStack());
-    }
-
-    private static void onInterModEnqueue(final InterModEnqueueEvent event) {
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BODY.getMessageBuilder().build());
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent

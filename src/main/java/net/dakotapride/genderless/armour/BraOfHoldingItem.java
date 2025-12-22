@@ -3,10 +3,8 @@ package net.dakotapride.genderless.armour;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.simibubi.create.AllEnchantments;
-import dev.mayaqq.estrogen.registry.EstrogenAttributes;
-import dev.mayaqq.estrogen.registry.EstrogenEffects;
-import dev.mayaqq.estrogen.registry.items.GenderChangePotionItem;
-import dev.mayaqq.estrogen.utils.Time;
+import dev.mayaqq.estrogen.content.EstrogenEffects;
+import dev.mayaqq.estrogen.content.items.GenderChangePotionItem;
 import earth.terrarium.botarium.common.fluid.FluidConstants;
 import earth.terrarium.botarium.common.fluid.base.BotariumFluidItem;
 import earth.terrarium.botarium.common.fluid.base.FluidContainer;
@@ -220,7 +218,7 @@ public class BraOfHoldingItem extends Item implements ICurioItem, BotariumFluidI
                     tick(level, player);
 
                     if (level.getGameTime() % 72L == 0L && !player.isCreative()) {
-                        itemFluidManager.extractFromSlot(0, FluidHolder.of(BotariumGenderlessFluids.VOID.get(), FluidConstants.getBucketAmount() / 1000L), false);
+                        itemFluidManager.extractFromSlot(0, FluidHolder.of(BotariumGenderlessFluids.VOID.getSource(), FluidConstants.getBucketAmount() / 1000L), false);
                         itemFluidManager.serialize(stack.getOrCreateTag());
                     }
                 }
@@ -236,11 +234,11 @@ public class BraOfHoldingItem extends Item implements ICurioItem, BotariumFluidI
 
     public void tick(Level level, Player player) {
         if (isEstrogenLoaded() && !level.isClientSide) {
-            if (player.hasEffect(EstrogenEffects.ESTROGEN_EFFECT.get())) {
-                player.removeEffect(EstrogenEffects.ESTROGEN_EFFECT.get());
+            if (player.hasEffect(EstrogenEffects.getEstrogen())) {
+                player.removeEffect(EstrogenEffects.getEstrogen());
             }
             // bandaid fix, really need to just cancel the usage of the Gender Change Potion while this item is equipped in the curios body slot
-            GenderChangePotionItem.changeGender(level, player, 0);
+            GenderChangePotionItem.Companion.changeGender(level, player, 0);
         }
         if (!level.isClientSide && player.hasEffect(GenderlessStatusEffects.GENDERFLUIDITY.get()))
             player.removeEffect(GenderlessStatusEffects.GENDERFLUIDITY.get());
@@ -254,7 +252,7 @@ public class BraOfHoldingItem extends Item implements ICurioItem, BotariumFluidI
     public ItemStack getFullStack() {
         ItemStack stack = this.getDefaultInstance();
         ItemFluidContainer itemFluidManager = this.getFluidContainer(stack);
-        itemFluidManager.insertFluid(FluidHolder.of(BotariumGenderlessFluids.VOID.get(), FluidConstants.getBucketAmount()), false);
+        itemFluidManager.insertFluid(FluidHolder.of(BotariumGenderlessFluids.VOID.getSource(), FluidConstants.getBucketAmount()), false);
         itemFluidManager.serialize(stack.getOrCreateTag());
         return stack;
     }
@@ -266,7 +264,7 @@ public class BraOfHoldingItem extends Item implements ICurioItem, BotariumFluidI
     }
 
     public WrappedItemFluidContainer getFluidContainer(ItemStack stack) {
-        return new WrappedItemFluidContainer(stack, new SimpleFluidContainer(this.getMaxCapacity(stack), 1, (amount, fluid) -> fluid.is(BotariumGenderlessFluids.VOID.get())));
+        return new WrappedItemFluidContainer(stack, new SimpleFluidContainer(this.getMaxCapacity(stack), 1, (amount, fluid) -> fluid.is(BotariumGenderlessFluids.VOID.getSource())));
     }
 
     public boolean isBarVisible(@NotNull ItemStack stack) {

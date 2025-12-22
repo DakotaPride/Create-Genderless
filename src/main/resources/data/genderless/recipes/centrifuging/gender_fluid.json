@@ -1,16 +1,15 @@
 {
-  "type": "estrogen:centrifuging",
+  "type": "createestrogen:centrifuging",
   "ingredients": [
     {
-      "amount": 1,
+      "amount_per_tick": 1,
       "fluid": "genderless:non_binary_fluid",
       "nbt": {}
     }
   ],
-  "results": [
-    {
-      "amount": 1,
-      "fluid": "estrogen:gender_fluid"
-    }
-  ]
+  "result":
+  {
+    "amount_per_tick": 1,
+    "fluid": "estrogen:gender_fluid"
+  }
 }

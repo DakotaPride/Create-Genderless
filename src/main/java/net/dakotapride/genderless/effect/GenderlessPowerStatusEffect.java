@@ -1,6 +1,6 @@
 package net.dakotapride.genderless.effect;
 
-import dev.mayaqq.estrogen.registry.EstrogenEffects;
+import dev.mayaqq.estrogen.content.EstrogenEffects;
 import net.dakotapride.genderless.init.GenderlessStatusEffects;
 import net.mifort.testosterone.effects.testosteroneModEffects;
 import net.minecraft.world.effect.MobEffect;
@@ -33,8 +33,8 @@ public class GenderlessPowerStatusEffect extends MobEffect {
     public void applyEffectTick(LivingEntity entity, int pAmplifier) {
         if (!entity.hasEffect(GenderlessStatusEffects.ERROR.get())) {
             if (isEstrogenLoaded())
-                if (entity.hasEffect(EstrogenEffects.ESTROGEN_EFFECT.get()))
-                    entity.removeEffect(EstrogenEffects.ESTROGEN_EFFECT.get());
+                if (entity.hasEffect(EstrogenEffects.getEstrogen()))
+                    entity.removeEffect(EstrogenEffects.getEstrogen());
             if (isTestosteroneLoaded())
                 if (entity.hasEffect(testosteroneModEffects.TESTOSTERONE_EFFECT.get()))
                     entity.removeEffect(testosteroneModEffects.TESTOSTERONE_EFFECT.get());

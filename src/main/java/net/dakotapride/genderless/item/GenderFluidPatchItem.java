@@ -3,7 +3,7 @@ package net.dakotapride.genderless.item;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.simibubi.create.AllEnchantments;
-import dev.mayaqq.estrogen.registry.EstrogenFluids;
+import dev.mayaqq.estrogen.content.EstrogenFluids;
 import earth.terrarium.botarium.common.fluid.FluidConstants;
 import earth.terrarium.botarium.common.fluid.base.BotariumFluidItem;
 import earth.terrarium.botarium.common.fluid.base.FluidContainer;
@@ -63,11 +63,11 @@ public class GenderFluidPatchItem extends Item implements ICurioItem, BotariumFl
                     }
 
                     if (level.getGameTime() % 72L == 0L && !player.isCreative()) {
-                        itemFluidManager.extractFromSlot(0, FluidHolder.of(EstrogenFluids.GENDER_FLUID.get(), FluidConstants.getBucketAmount() / 1000L), false);
+                        itemFluidManager.extractFromSlot(0, FluidHolder.of(EstrogenFluids.INSTANCE.getGenderFluid().getSource(), FluidConstants.getBucketAmount() / 1000L), false);
                         itemFluidManager.serialize(stack.getOrCreateTag());
                     }
 
-                    if (!player.isCreative() && player.isInFluidType(EstrogenFluids.GENDER_FLUID.get().getFluidType())) {
+                    if (!player.isCreative() && player.isInFluidType(EstrogenFluids.INSTANCE.getGenderFluid().getSource().getFluidType())) {
                         player.setAirSupply(300);
                         this.addEffect(player, level, MobEffects.MOVEMENT_SPEED);
                     }
@@ -117,7 +117,7 @@ public class GenderFluidPatchItem extends Item implements ICurioItem, BotariumFl
     public ItemStack getFullStack() {
         ItemStack stack = this.getDefaultInstance();
         ItemFluidContainer itemFluidManager = this.getFluidContainer(stack);
-        itemFluidManager.insertFluid(FluidHolder.of(EstrogenFluids.GENDER_FLUID.get(), FluidConstants.getBucketAmount()), false);
+        itemFluidManager.insertFluid(FluidHolder.of(EstrogenFluids.INSTANCE.getGenderFluid().getSource(), FluidConstants.getBucketAmount()), false);
         itemFluidManager.serialize(stack.getOrCreateTag());
         return stack;
     }
@@ -129,7 +129,7 @@ public class GenderFluidPatchItem extends Item implements ICurioItem, BotariumFl
     }
 
     public WrappedItemFluidContainer getFluidContainer(ItemStack stack) {
-        return new WrappedItemFluidContainer(stack, new SimpleFluidContainer(this.getMaxCapacity(stack), 1, (amount, fluid) -> fluid.is(EstrogenFluids.GENDER_FLUID.get())));
+        return new WrappedItemFluidContainer(stack, new SimpleFluidContainer(this.getMaxCapacity(stack), 1, (amount, fluid) -> fluid.is(EstrogenFluids.INSTANCE.getGenderFluid().getSource())));
     }
 
     public boolean isBarVisible(@NotNull ItemStack stack) {

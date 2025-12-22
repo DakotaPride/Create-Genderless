@@ -1,6 +1,6 @@
 package net.dakotapride.genderless.effect;
 
-import dev.mayaqq.estrogen.registry.EstrogenEffects;
+import dev.mayaqq.estrogen.content.EstrogenEffects;
 import net.dakotapride.genderless.advancement.GenderlessAdvancementUtils;
 import net.dakotapride.genderless.init.GenderlessStatusEffects;
 import net.mifort.testosterone.effects.testosteroneModEffects;
@@ -25,7 +25,7 @@ public class ErrorStatusEffect extends MobEffect {
         if (entity instanceof ServerPlayer player) {
             if (
                     // Cannot require *every* gender effect due to Testosterone removing the Girl Power effect (and for some reason it really doesn't like mixining into the class to prevent this, so RIP)
-                    ((isEstrogenLoaded() && player.hasEffect(EstrogenEffects.ESTROGEN_EFFECT.get()))
+                    ((isEstrogenLoaded() && player.hasEffect(EstrogenEffects.getEstrogen()))
                     || (isTestosteroneLoaded() && player.hasEffect(testosteroneModEffects.TESTOSTERONE_EFFECT.get())))
                     && player.hasEffect(GenderlessStatusEffects.GENDERLESS_POWER.get())
                     && player.hasEffect(GenderlessStatusEffects.GENDERFLUIDITY.get())

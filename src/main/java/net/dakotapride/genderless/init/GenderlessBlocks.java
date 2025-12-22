@@ -1,7 +1,7 @@
 package net.dakotapride.genderless.init;
 
 import com.tterrag.registrate.util.entry.BlockEntry;
-import dev.mayaqq.estrogen.registry.EstrogenSoundTypes;
+import dev.mayaqq.estrogen.content.EstrogenSoundTypes;
 import net.dakotapride.genderless.block.PillBoxBlock;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.Rarity;
@@ -22,12 +22,12 @@ public class GenderlessBlocks {
             .register();
     public static final BlockEntry<?> GENDERLESS_PILL_BOX = REGISTRATE.block("genderless_pill_box", PillBoxBlock::new)
             .initialProperties(() -> Blocks.OAK_PLANKS)
-            .properties((p) -> p.strength(1.0F, 1.0F).sound(EstrogenSoundTypes.PILL_BOX))
+            .properties((p) -> p.strength(1.0F, 1.0F).sound(EstrogenSoundTypes.INSTANCE.getPILL_BOX()))
             .simpleItem()
             .register();
     public static final BlockEntry<?> GENDERFLUID_PILL_BOX = REGISTRATE.block("genderfluid_pill_box", PillBoxBlock::new)
             .initialProperties(() -> Blocks.OAK_PLANKS)
-            .properties((p) -> p.strength(1.0F, 1.0F).sound(EstrogenSoundTypes.PILL_BOX))
+            .properties((p) -> p.strength(1.0F, 1.0F).sound(EstrogenSoundTypes.INSTANCE.getPILL_BOX()))
             .item().properties(p -> p.rarity(Rarity.RARE)).build()
             .register();
 
