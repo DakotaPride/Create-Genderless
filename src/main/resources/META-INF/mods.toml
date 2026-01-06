@@ -33,6 +33,12 @@ logoFile="assets/creategenderless/creategenderless_icon0.png"
     ordering="NONE"
     side="BOTH"
 [[dependencies.${mod_id}]]
+    modId="createestrogen"
+    mandatory=true
+    versionRange="[1.0.0,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.${mod_id}]]
     modId="testosterone"
     mandatory=true
     versionRange="[1.1.0,)"
