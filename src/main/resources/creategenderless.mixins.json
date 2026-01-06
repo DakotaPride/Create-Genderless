@@ -2,6 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "net.dakotapride.creategenderless.mixin",
+  "refmap": "creategenderless.refmap.json",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "LivingEntityMixin",
