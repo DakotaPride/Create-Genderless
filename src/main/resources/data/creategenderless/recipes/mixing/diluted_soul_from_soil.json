@@ -1,0 +1,22 @@
+{
+  "type": "create:mixing",
+  "heatRequirement": "heated",
+  "ingredients": [
+    {
+      "item": "minecraft:soul_soil"
+    },
+    {
+      "amount": 250,
+      "fluid": "minecraft:water"
+    }
+  ],
+  "results": [
+    {
+      "amount": 250,
+      "fluid": "creategenderless:diluted_soul"
+    },
+    {
+      "item": "minecraft:soul_soil"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "creategenderless:cut_shellrock_wall",
+    "creategenderless:polished_cut_shellrock_wall",
+    "creategenderless:cut_shellrock_brick_wall",
+    "creategenderless:small_shellrock_brick_wall"
+  ]
+}

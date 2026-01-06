@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:diluted_soul_bucket"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.diluted_soul"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.diluted_soul.desc"
+    },
+    "frame": "task",
+    "announce_to_chat": true,
+    "hidden": false,
+    "show_toast": true
+  },
+  "parent": "creategenderless:root",
+  "criteria": {
+    "diluted_soul": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "creategenderless:diluted_soul_bucket"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "diluted_soul"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

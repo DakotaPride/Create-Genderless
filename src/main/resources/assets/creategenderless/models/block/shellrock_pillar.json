@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "creategenderless:block/cut_shellrock_cap",
+    "side": "creategenderless:block/cut_shellrock_pillar"
+  }
+}

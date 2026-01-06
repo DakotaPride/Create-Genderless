@@ -1,0 +1,47 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:genderless_pill"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.root"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.root.desc"
+    },
+    "background": "creategenderless:textures/block/cut_shellrock.png",
+    "frame": "task",
+    "announce_to_chat": true,
+    "hidden": false,
+    "show_toast": true
+  },
+  "criteria": {
+    "creategenderless": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "creategenderless:nullsterogen_bucket",
+              "creategenderless:condensed_void_bucket",
+              "creategenderless:diluted_soul_bucket",
+              "creategenderless:genderless_pill",
+              "creategenderless:void_pill",
+              "creategenderless:nullsterogen_malt_balls",
+              "creategenderless:genderslime_ball",
+              "creategenderless:genderslime_block",
+              "creategenderless:genderslime_bricks",
+              "creategenderless:binary_block"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "creategenderless"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

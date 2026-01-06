@@ -1,0 +1,19 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "creategenderless:lumar_iron_nugget"
+    }
+  ],
+  "results": [
+    {
+      "item": "creategenderless:shellrock_rubble",
+      "count": 1
+    },
+    {
+      "item": "creategenderless:shellrock_rubble",
+      "count": 1,
+      "chance": 0.1
+    }
+  ]
+}

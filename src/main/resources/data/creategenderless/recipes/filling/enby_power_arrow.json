@@ -1,0 +1,21 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "minecraft:arrow"
+    },
+    {
+      "amount": 250,
+      "fluid": "creategenderless:nullsterogen",
+      "nbt": {}
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:tipped_arrow",
+      "nbt": {
+        "Potion": "creategenderless:enby_power"
+      }
+    }
+  ]
+}

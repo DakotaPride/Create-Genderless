@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:shellrock"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.geo_all"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.geo_all.desc"
+    },
+    "frame": "challenge",
+    "announce_to_chat": true,
+    "hidden": true,
+    "show_toast": true
+  },
+  "parent": "creategenderless:geo",
+  "criteria": {
+    "2368_geo_blocks": {
+      "trigger": "creategenderless:shellrock_count"
+    }
+  },
+  "requirements": [
+    [
+      "2368_geo_blocks"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

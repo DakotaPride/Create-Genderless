@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:enlightened_pill"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.enlightened_pill"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.enlightened_pill.desc"
+    },
+    "frame": "task",
+    "announce_to_chat": true,
+    "hidden": false,
+    "show_toast": true
+  },
+  "parent": "creategenderless:genderless_pill",
+  "criteria": {
+    "enlightened_pill": {
+      "conditions": {
+        "item": {
+          "items": [
+            "creategenderless:enlightened_pill"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "requirements": [
+    [
+      "enlightened_pill"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

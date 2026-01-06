@@ -1,0 +1,21 @@
+{
+  "values": [
+    "creategenderless:shellrock",
+    "creategenderless:cut_shellrock",
+    "creategenderless:cut_shellrock_slab",
+    "creategenderless:cut_shellrock_stairs",
+    "creategenderless:cut_shellrock_wall",
+    "creategenderless:polished_cut_shellrock",
+    "creategenderless:polished_cut_shellrock_slab",
+    "creategenderless:polished_cut_shellrock_stairs",
+    "creategenderless:polished_cut_shellrock_wall",
+    "creategenderless:cut_shellrock_bricks",
+    "creategenderless:cut_shellrock_brick_slab",
+    "creategenderless:cut_shellrock_brick_stairs",
+    "creategenderless:cut_shellrock_brick_wall",
+    "creategenderless:small_shellrock_bricks",
+    "creategenderless:small_shellrock_brick_slab",
+    "creategenderless:small_shellrock_brick_stairs",
+    "creategenderless:small_shellrock_brick_wall"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_side",
+  "textures": {
+    "wall": "creategenderless:block/small_cut_shellrock_bricks"
+  }
+}

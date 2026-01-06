@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:lumarfly_bottle"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.lumarfly_capture"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.lumarfly_capture.desc"
+    },
+    "frame": "task",
+    "announce_to_chat": true,
+    "hidden": false,
+    "show_toast": true
+  },
+  "parent": "creategenderless:diluted_soul",
+  "criteria": {
+    "lumarfly_capture": {
+      "trigger": "creategenderless:lumarfly_capture"
+    }
+  },
+  "requirements": [
+    [
+      "lumarfly_capture"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

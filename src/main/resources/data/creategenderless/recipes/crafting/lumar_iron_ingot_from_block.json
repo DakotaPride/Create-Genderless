@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "lumar_iron_ingot",
+  "ingredients": [
+    {
+      "item": "creategenderless:lumar_iron_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "creategenderless:lumar_iron_ingot"
+  }
+}

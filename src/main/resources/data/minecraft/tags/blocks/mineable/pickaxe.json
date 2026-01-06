@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#creategenderless:stone_types/shellrock",
+    "creategenderless:lumar_iron_block",
+    "creategenderless:lumarfly_lantern",
+    "creategenderless:binary_block"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:nullsterogen_malt_balls"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.nullsterogen_malt_balls"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.nullsterogen_malt_balls.desc"
+    },
+    "frame": "task",
+    "announce_to_chat": true,
+    "hidden": false,
+    "show_toast": true
+  },
+  "parent": "creategenderless:genderless_pill",
+  "criteria": {
+    "nullsterogen_malt_balls": {
+      "conditions": {
+        "item": {
+          "items": [
+            "creategenderless:nullsterogen_malt_balls"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "requirements": [
+    [
+      "nullsterogen_malt_balls"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

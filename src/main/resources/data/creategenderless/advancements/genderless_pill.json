@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:genderless_pill"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.genderless_pill"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.genderless_pill.desc"
+    },
+    "frame": "task",
+    "announce_to_chat": true,
+    "hidden": false,
+    "show_toast": true
+  },
+  "parent": "creategenderless:nullsterogen",
+  "criteria": {
+    "genderless_pill": {
+      "conditions": {
+        "item": {
+          "items": [
+            "creategenderless:genderless_pill"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "requirements": [
+    [
+      "genderless_pill"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

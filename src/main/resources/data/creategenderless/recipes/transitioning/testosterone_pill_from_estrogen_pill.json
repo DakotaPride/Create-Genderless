@@ -1,0 +1,20 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "testosterone"
+    }
+  ],
+  "type": "creategenderless:transitioning",
+  "ingredients": [
+    {
+      "item": "estrogen:estrogen_pill"
+    }
+  ],
+  "results": [
+    {
+      "item": "testosterone:testosterone_pill",
+      "count": 1
+    }
+  ]
+}

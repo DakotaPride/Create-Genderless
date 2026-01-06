@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:lumarfly_bottle"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.save_the_lumarflies"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.save_the_lumarflies.desc"
+    },
+    "frame": "challenge",
+    "announce_to_chat": true,
+    "hidden": true,
+    "show_toast": true
+  },
+  "parent": "creategenderless:lumarfly_capture",
+  "criteria": {
+    "save_the_653_lumarflies": {
+      "trigger": "creategenderless:save_the_lumarflies"
+    }
+  },
+  "requirements": [
+    [
+      "save_the_653_lumarflies"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

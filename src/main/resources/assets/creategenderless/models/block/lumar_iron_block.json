@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "creategenderless:block/lumar_iron_block"
+  }
+}

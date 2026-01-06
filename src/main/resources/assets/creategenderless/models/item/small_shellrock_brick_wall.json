@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "creategenderless:block/small_cut_shellrock_bricks"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:nullsterogen_bucket"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.nullsterogen"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.nullsterogen.desc"
+    },
+    "frame": "task",
+    "announce_to_chat": true,
+    "hidden": false,
+    "show_toast": true
+  },
+  "parent": "creategenderless:root",
+  "criteria": {
+    "nullsterogen": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "creategenderless:nullsterogen_bucket"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "nullsterogen"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

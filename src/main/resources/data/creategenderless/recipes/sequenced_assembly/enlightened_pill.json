@@ -1,0 +1,51 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "creategenderless:genderless_pill"
+  },
+  "loops": 2,
+  "results": [
+    {
+      "item": "creategenderless:enlightened_pill"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "creategenderless:incomplete_enlightened_pill"
+        },
+        {
+          "fluid": "creategenderless:diluted_soul",
+          "amount": 250
+        }
+      ],
+      "results": [
+        {
+          "item": "creategenderless:incomplete_enlightened_pill"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "creategenderless:incomplete_enlightened_pill"
+        },
+        {
+          "item": "creategenderless:lumarfly_bottle"
+        }
+      ],
+      "keepHeldItem": true,
+      "results": [
+        {
+          "item": "creategenderless:incomplete_enlightened_pill"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "creategenderless:incomplete_enlightened_pill"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:genderslime_ball"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.genderslime_ball"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.genderslime_ball.desc"
+    },
+    "frame": "task",
+    "announce_to_chat": true,
+    "hidden": false,
+    "show_toast": true
+  },
+  "parent": "creategenderless:root",
+  "criteria": {
+    "genderslime_ball": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "creategenderless:genderslime_ball"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "genderslime_ball"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

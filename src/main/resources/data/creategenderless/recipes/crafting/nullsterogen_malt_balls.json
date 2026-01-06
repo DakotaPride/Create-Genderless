@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "creategenderless:genderless_pill"
+    },
+    {
+      "item": "create:bar_of_chocolate"
+    },
+    {
+      "item": "create:cinder_flour"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "creategenderless:nullsterogen_malt_balls"
+  }
+}

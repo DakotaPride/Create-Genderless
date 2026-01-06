@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": ["minecraft:dark_forest", "minecraft:lush_caves"],
+  "spawners": {
+    "type": "creategenderless:lumarfly",
+    "weight": 10,
+    "minCount": 2,
+    "maxCount": 5
+  }
+}

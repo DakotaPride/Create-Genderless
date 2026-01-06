@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "creategenderless:block/cut_shellrock_brick_slab"
+    },
+    "type=double": {
+      "model": "creategenderless:block/cut_shellrock_bricks"
+    },
+    "type=top": {
+      "model": "creategenderless:block/cut_shellrock_brick_slab_top"
+    }
+  }
+}

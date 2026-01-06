@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:end_crystal"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.end_crystal_pogo"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.end_crystal_pogo.desc"
+    },
+    "frame": "challenge",
+    "announce_to_chat": true,
+    "hidden": true,
+    "show_toast": true
+  },
+  "parent": "creategenderless:genderless_pill",
+  "criteria": {
+    "end_crystal_pogo": {
+      "trigger": "creategenderless:end_crystal_pogo"
+    }
+  },
+  "requirements": [
+    [
+      "end_crystal_pogo"
+    ]
+  ],
+  "rewards": {
+    "loot": [],
+    "experience": 200
+  },
+  "sends_telemetry_event": true
+}

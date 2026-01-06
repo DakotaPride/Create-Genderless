@@ -1,0 +1,8 @@
+{
+    "type": "minecraft:stonecutting",
+    "count": 1,
+    "ingredient": {
+        "tag": "creategenderless:stone_types/shellrock"
+    },
+    "result": "creategenderless:small_shellrock_brick_slab"
+}

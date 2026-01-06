@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "creategenderless:block/shellrock_pillar_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "creategenderless:block/shellrock_pillar"
+    },
+    "axis=z": {
+      "model": "creategenderless:block/shellrock_pillar_horizontal",
+      "x": 90
+    }
+  }
+}

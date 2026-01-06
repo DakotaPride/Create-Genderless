@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:lumarfly_lantern"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.lumarfly_lantern"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.lumarfly_lantern.desc"
+    },
+    "frame": "task",
+    "announce_to_chat": true,
+    "hidden": false,
+    "show_toast": true
+  },
+  "parent": "creategenderless:lumarfly_capture",
+  "criteria": {
+    "lumarfly_lantern": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "creategenderless:lumarfly_lantern"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "lumarfly_lantern"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

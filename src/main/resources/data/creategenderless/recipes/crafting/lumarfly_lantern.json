@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "X": {
+      "item": "creategenderless:lumar_iron_nugget"
+    },
+    "Y": {
+      "item": "creategenderless:lumarfly_bottle"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "XYX",
+    "XXX"
+  ],
+  "result": {
+    "item": "creategenderless:lumarfly_lantern"
+  }
+}

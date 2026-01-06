@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "creategenderless:block/small_cut_shellrock_bricks",
+    "side": "creategenderless:block/small_cut_shellrock_bricks",
+    "top": "creategenderless:block/small_cut_shellrock_bricks"
+  }
+}

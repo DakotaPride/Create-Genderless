@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "creategenderless:block/polished_cut_shellrock",
+    "side": "creategenderless:block/shellrock_cut_slab",
+    "top": "creategenderless:block/polished_cut_shellrock"
+  }
+}

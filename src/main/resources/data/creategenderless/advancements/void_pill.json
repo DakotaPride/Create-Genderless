@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:void_pill"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.void_pill"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.void_pill.desc"
+    },
+    "frame": "task",
+    "announce_to_chat": true,
+    "hidden": false,
+    "show_toast": true
+  },
+  "parent": "creategenderless:diluted_soul",
+  "criteria": {
+    "void_pill": {
+      "conditions": {
+        "item": {
+          "items": [
+            "creategenderless:void_pill"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "requirements": [
+    [
+      "void_pill"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

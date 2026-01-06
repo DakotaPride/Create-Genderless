@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "creategenderless:block/lumarfly_lantern"
+    },
+    "hanging=true": {
+      "model": "creategenderless:block/lumarfly_lantern_hanging"
+    }
+  }
+}

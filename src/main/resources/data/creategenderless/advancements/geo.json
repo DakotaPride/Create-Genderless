@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:shellrock_rubble"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.geo"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.geo.desc"
+    },
+    "frame": "task",
+    "announce_to_chat": true,
+    "hidden": false,
+    "show_toast": true
+  },
+  "parent": "creategenderless:root",
+  "criteria": {
+    "geo": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "creategenderless:shellrock_rubble"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "geo"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

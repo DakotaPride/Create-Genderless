@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "creategenderless:block/genderslime_block"
+      }
+    ]
+  }
+}
