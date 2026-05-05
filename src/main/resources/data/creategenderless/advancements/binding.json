@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:basic_crest"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.binding"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.binding.desc"
+    },
+    "frame": "task",
+    "announce_to_chat": true,
+    "hidden": false,
+    "show_toast": true
+  },
+  "parent": "creategenderless:needle",
+  "criteria": {
+    "binding": {
+      "trigger": "creategenderless:binding"
+    }
+  },
+  "requirements": [
+    [
+      "binding"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

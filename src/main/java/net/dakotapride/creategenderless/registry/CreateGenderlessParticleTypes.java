@@ -10,7 +10,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class CreateGenderlessParticleTypes {
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES =
-            DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, CreateGenderlessMod.ID);
+            DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, CreateGenderlessMod.MOD_ID);
 
     public static RegistryObject<SimpleParticleType> LUMARFLIES_SMALL = register("lumarflies_small", false);
 

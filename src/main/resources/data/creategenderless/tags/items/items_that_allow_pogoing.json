@@ -1,0 +1,11 @@
+{
+  "values": [
+    "#minecraft:swords",
+    "creategenderless:needle",
+
+    {
+      "required": false,
+      "id": "#forge:swords"
+    }
+  ]
+}

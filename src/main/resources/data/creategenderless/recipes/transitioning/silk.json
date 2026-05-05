@@ -1,0 +1,14 @@
+{
+  "type": "creategenderless:transitioning",
+  "ingredients": [
+    {
+      "item": "minecraft:string"
+    }
+  ],
+  "results": [
+    {
+      "item": "creategenderless:silk",
+      "count": 1
+    }
+  ]
+}

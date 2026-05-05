@@ -73,7 +73,7 @@ public class CreateGenderlessJEI implements IModPlugin {
         CreateRecipeCategory<?> transitioning = builder(TransitioningFanRecipe.class)
                 .addTypedRecipes(CreateGenderlessRecipeTypes.TRANSITIONING::getType)
                 .catalystStack(TransitioningFanCategory.getFan("fan_transitioning"))
-                .doubleItemIcon(AllItems.PROPELLER.get(), fluid.getBucket())
+                .doubleItemIcon(AllItems.PROPELLER.get(), CreateGenderlessMod.isEstrogenLoaded ? fluid.getBucket() : Items.BUCKET)
                 .emptyBackground(178, 72)
                 .build("fan_transitioning", TransitioningFanCategory::new);
 

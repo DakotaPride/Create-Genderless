@@ -9,7 +9,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 public class CreateGenderlessPotions {
-    public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(Registries.POTION, CreateGenderlessMod.ID);
+    public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(Registries.POTION, CreateGenderlessMod.MOD_ID);
     public static final RegistryObject<Potion> ENBY_POWER_POTION = POTIONS.register("enby_power", () -> new Potion("enby_power",
                     new MobEffectInstance(CreateGenderlessMobEffects.ENBY_POWER.get(), 12000)));
 

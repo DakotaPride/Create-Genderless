@@ -5,6 +5,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
@@ -39,6 +41,33 @@ public class CreateGenderlessTags {
         }
     }
 
+    public enum ItemTags {
+        ITEMS_THAT_ALLOW_POGOING(),
+
+
+        ;
+
+        private final TagKey<Item> itemTagKey;
+
+        ItemTags() {
+            this.itemTagKey = TagKey.create(Registries.ITEM, CreateGenderlessMod.asResource(name().toLowerCase(Locale.ROOT)));
+        }
+
+        ItemTags(String location) {
+            this.itemTagKey = TagKey.create(Registries.ITEM, CreateGenderlessMod.asResource(location));
+        }
+
+
+
+        public boolean matches(Item item) {
+            return item.getDefaultInstance().is(itemTagKey);
+        }
+
+        public boolean matches(ItemStack stack) {
+            return matches(stack.getItem());
+        }
+    }
+
     public enum FluidTags {
         FAN_TRANSITIONING_PROCESSING_TAG("fan_processing_catalysts/transitioning")
 
@@ -66,6 +95,7 @@ public class CreateGenderlessTags {
 
     public enum EntityTypeTags {
         NONASCENDABLE_CREATURES(),
+        NONPOGOABLE_CREATURES()
 
 
         ;

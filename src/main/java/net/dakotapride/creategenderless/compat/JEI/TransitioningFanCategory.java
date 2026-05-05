@@ -8,13 +8,16 @@ import com.simibubi.create.foundation.utility.CreateLang;
 import dev.mayaqq.estrogen.content.EstrogenFluids;
 import net.createmod.catnip.gui.element.GuiGameElement;
 import net.dakotapride.creategenderless.CreateGenderlessLang;
+import net.dakotapride.creategenderless.CreateGenderlessMod;
 import net.dakotapride.creategenderless.registry.CreateGenderlessFluids;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
@@ -41,7 +44,7 @@ public class TransitioningFanCategory<T extends ProcessingRecipe<?>> extends Pro
         ResourceLocation genderfluidID = ResourceLocation.fromNamespaceAndPath("estrogen", "gender_fluid");
         Fluid genderfluidType = ForgeRegistries.FLUIDS.getValue(genderfluidID);
 
-        GuiGameElement.of(genderfluidType)
+        GuiGameElement.of(CreateGenderlessMod.isEstrogenLoaded ? genderfluidType : Fluids.WATER)
                 .scale(SCALE)
                 .atLocal(0, 0, 2)
                 .lighting(AnimatedKinetics.DEFAULT_LIGHTING)

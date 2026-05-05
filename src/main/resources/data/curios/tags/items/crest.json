@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "creategenderless:basic_crest",
+    "creategenderless:pyromaniac_crest",
+    "creategenderless:mucked_crest",
+    "creategenderless:faithful_crest"
+  ]
+}

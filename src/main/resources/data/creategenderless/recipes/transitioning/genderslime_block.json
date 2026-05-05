@@ -1,0 +1,14 @@
+{
+  "type": "creategenderless:transitioning",
+  "ingredients": [
+    {
+      "item": "minecraft:slime_block"
+    }
+  ],
+  "results": [
+    {
+      "item": "creategenderless:genderslime_block",
+      "count": 1
+    }
+  ]
+}

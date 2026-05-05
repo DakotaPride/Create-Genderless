@@ -1,0 +1,86 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "creategenderless:block/decaying_log",
+		"1": "creategenderless:block/decaying_log_top",
+		"2": "creategenderless:block/log_decay",
+		"particle": "creategenderless:block/decaying_log"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"up": {"uv": [16, 16, 0, 0], "texture": "#1"},
+				"down": {"uv": [16, 0, 0, 16], "texture": "#0"}
+			}
+		},
+		{
+			"from": [-0.01, 15.99, -0.01],
+			"to": [0.01, 20.01, 16.01],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 1, 0]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 3], "texture": "#2"},
+				"east": {"uv": [16, 0, 0, 4], "texture": "#2"},
+				"south": {"uv": [0, 0, 0, 3], "texture": "#2"},
+				"west": {"uv": [0, 0, 16, 4], "texture": "#2"},
+				"up": {"uv": [0, 16, 0, 0], "texture": "#2"},
+				"down": {"uv": [0, 0, 0, 16], "texture": "#2"}
+			}
+		},
+		{
+			"from": [15.99, 15.99, -0.01],
+			"to": [16.01, 20.01, 16.01],
+			"rotation": {"angle": 0, "axis": "y", "origin": [16, 1, 0]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 3], "texture": "#2"},
+				"east": {"uv": [16, 0, 0, 4], "texture": "#2"},
+				"south": {"uv": [0, 0, 0, 3], "texture": "#2"},
+				"west": {"uv": [0, 0, 16, 4], "texture": "#2"},
+				"up": {"uv": [0, 16, 0, 0], "texture": "#2"},
+				"down": {"uv": [0, 0, 0, 16], "texture": "#2"}
+			}
+		},
+		{
+			"from": [-0.01, 15.99, 15.99],
+			"to": [16.01, 20.01, 16.01],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 1, 16]},
+			"faces": {
+				"north": {"uv": [16, 0, 0, 4], "texture": "#2"},
+				"east": {"uv": [0, 0, 0, 3], "texture": "#2"},
+				"south": {"uv": [0, 0, 16, 4], "texture": "#2"},
+				"west": {"uv": [0, 0, 0, 3], "texture": "#2"},
+				"up": {"uv": [0, 16, 0, 0], "rotation": 270, "texture": "#2"},
+				"down": {"uv": [0, 0, 0, 16], "rotation": 90, "texture": "#2"}
+			}
+		},
+		{
+			"from": [-0.01, 15.99, -0.01],
+			"to": [16.01, 20.01, 0.01],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 1, 0]},
+			"faces": {
+				"north": {"uv": [16, 0, 0, 4], "texture": "#2"},
+				"east": {"uv": [0, 0, 0, 3], "texture": "#2"},
+				"south": {"uv": [0, 0, 16, 4], "texture": "#2"},
+				"west": {"uv": [0, 0, 0, 3], "texture": "#2"},
+				"up": {"uv": [0, 16, 0, 0], "rotation": 270, "texture": "#2"},
+				"down": {"uv": [0, 0, 0, 16], "rotation": 90, "texture": "#2"}
+			}
+		}
+	],
+	"groups": [
+		0,
+		{
+			"name": "log_decay",
+			"origin": [0, 1, 0],
+			"scope": 0,
+			"color": 0,
+			"children": [1, 2, 3, 4]
+		}
+	]
+}

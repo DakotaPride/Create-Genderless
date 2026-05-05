@@ -1,0 +1,84 @@
+{
+  "variants": {
+    "facing=up,spool_connection=none": {
+      "model": "creategenderless:block/silk_spool"
+    },
+    "facing=down,spool_connection=none": {
+      "model": "creategenderless:block/silk_spool",
+      "x": 180
+    },
+    "facing=up,spool_connection=bottom": {
+      "model": "creategenderless:block/silk_spool_bottom"
+    },
+    "facing=down,spool_connection=bottom": {
+      "model": "creategenderless:block/silk_spool",
+      "x": 180
+    },
+    "facing=up,spool_connection=top": {
+      "model": "creategenderless:block/silk_spool"
+    },
+    "facing=down,spool_connection=top": {
+      "model": "creategenderless:block/silk_spool_top",
+      "x": 180
+    },
+
+    "facing=east,spool_connection=none": {
+      "model": "creategenderless:block/silk_spool",
+      "x": 90,
+      "y": 90
+    },
+    "facing=west,spool_connection=none": {
+      "model": "creategenderless:block/silk_spool",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,spool_connection=bottom": {
+      "model": "creategenderless:block/silk_spool_bottom",
+      "x": 90,
+      "y": 90
+    },
+    "facing=west,spool_connection=bottom": {
+      "model": "creategenderless:block/silk_spool",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,spool_connection=top": {
+      "model": "creategenderless:block/silk_spool",
+      "x": 90,
+      "y": 90
+    },
+    "facing=west,spool_connection=top": {
+      "model": "creategenderless:block/silk_spool_top",
+      "x": 90,
+      "y": 270
+    },
+
+    "facing=south,spool_connection=none": {
+      "model": "creategenderless:block/silk_spool",
+      "x": 90,
+      "y": 180
+    },
+    "facing=north,spool_connection=none": {
+      "model": "creategenderless:block/silk_spool",
+      "x": 90
+    },
+    "facing=south,spool_connection=bottom": {
+      "model": "creategenderless:block/silk_spool_bottom",
+      "x": 90,
+      "y": 180
+    },
+    "facing=north,spool_connection=bottom": {
+      "model": "creategenderless:block/silk_spool",
+      "x": 90
+    },
+    "facing=south,spool_connection=top": {
+      "model": "creategenderless:block/silk_spool",
+      "x": 90,
+      "y": 180
+    },
+    "facing=north,spool_connection=top": {
+      "model": "creategenderless:block/silk_spool_top",
+      "x": 90
+    }
+  }
+}
