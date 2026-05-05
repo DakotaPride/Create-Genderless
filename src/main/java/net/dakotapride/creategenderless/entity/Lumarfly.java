@@ -4,6 +4,8 @@ import net.dakotapride.creategenderless.registry.CreateGenderlessAdvancementCrit
 import net.dakotapride.creategenderless.registry.CreateGenderlessEntityTypes;
 import net.dakotapride.creategenderless.registry.CreateGenderlessItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -27,6 +29,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
@@ -116,33 +119,62 @@ public class Lumarfly extends Animal implements FlyingAnimal {
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
 
-        if (stack.getItem() == Items.GLASS_BOTTLE && !this.isBaby()) {
-            ItemStack itemStack = new ItemStack(CreateGenderlessItems.LUMARFLY_BOTTLE);
-            if (this.hasCustomName()) {
-                itemStack.setHoverName(this.getName());
+        if (!this.isBaby()) {
+            if (stack.getItem() == CreateGenderlessItems.SILK.asItem()) {
+                Lumarfly lumarfly = CreateGenderlessEntityTypes.LUMARFLY.get().create(this.level());
+                if (lumarfly != null && this.random.nextFloat() < 0.05F) {
+                    lumarfly.setBaby(true);
+                    lumarfly.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), this.getXRot());
+                    this.level().addFreshEntity(lumarfly);
+                    if (player instanceof ServerPlayer serverPlayer)
+                        CreateGenderlessAdvancementCriteria.LUMARFLY_REPOPULATION.trigger(serverPlayer);
+                }
+
+                if (!player.getAbilities().instabuild) {
+                    stack.shrink(1);
+                    player.getCooldowns().addCooldown(stack.getItem(), 120);
+                }
+
+                for(int i = 0; i < 32; ++i) {
+                    this.level().addParticle(
+                            new BlockParticleOption(ParticleTypes.BLOCK, Blocks.COBWEB.defaultBlockState()),
+                            this.getX() + this.random.nextDouble() * 2.0D,
+                            this.getY() + this.random.nextDouble() * 2.0D,
+                            this.getZ() + this.random.nextDouble() * 2.0D,
+                            this.random.nextGaussian(),
+                            0.0D,
+                            this.random.nextGaussian());
+                }
             }
 
-            if (!player.getAbilities().instabuild) {
-                if (stack.getCount() > 1) {
-                    stack.shrink(1);
+            if (stack.getItem() == Items.GLASS_BOTTLE) {
+                ItemStack itemStack = new ItemStack(CreateGenderlessItems.LUMARFLY_BOTTLE);
+                if (this.hasCustomName()) {
+                    itemStack.setHoverName(this.getName());
+                }
+
+                if (!player.getAbilities().instabuild) {
+                    if (stack.getCount() > 1) {
+                        stack.shrink(1);
+                        if (!player.getInventory().add(itemStack)) {
+                            player.drop(itemStack, true);
+                        }
+                    } else {
+                        player.setItemInHand(hand, itemStack);
+                    }
+                } else {
                     if (!player.getInventory().add(itemStack)) {
                         player.drop(itemStack, true);
                     }
-                } else {
-                    player.setItemInHand(hand, itemStack);
                 }
-            } else {
-                if (!player.getInventory().add(itemStack)) {
-                    player.drop(itemStack, true);
-                }
+
+                this.level().playSound(player, player.blockPosition(), SoundEvents.BOTTLE_FILL, SoundSource.NEUTRAL, 1.0f, 1.0f);
+                this.discard();
+
+                if (!player.level().isClientSide)
+                    CreateGenderlessAdvancementCriteria.LUMARFLY_CAPTURE.trigger((ServerPlayer) player);
+                return InteractionResult.SUCCESS;
             }
-
-            this.level().playSound(player, player.blockPosition(), SoundEvents.BOTTLE_FILL, SoundSource.NEUTRAL, 1.0f, 1.0f);
-            this.discard();
-
-            if (!player.level().isClientSide)
-                CreateGenderlessAdvancementCriteria.LUMARFLY_CAPTURE.trigger((ServerPlayer) player);
-            return InteractionResult.SUCCESS;
         }
 
         return super.mobInteract(player, hand);

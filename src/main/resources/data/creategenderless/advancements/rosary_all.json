@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:pale_rosary"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.rosary_all"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.rosary_all.desc"
+    },
+    "frame": "challenge",
+    "announce_to_chat": true,
+    "hidden": true,
+    "show_toast": true
+  },
+  "parent": "creategenderless:rosary",
+  "criteria": {
+    "500_rosaries": {
+      "trigger": "creategenderless:rosary_count"
+    }
+  },
+  "requirements": [
+    [
+      "500_rosaries"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

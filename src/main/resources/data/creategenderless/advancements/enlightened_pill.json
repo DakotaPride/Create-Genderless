@@ -14,7 +14,7 @@
     "hidden": false,
     "show_toast": true
   },
-  "parent": "creategenderless:genderless_pill",
+  "parent": "creategenderless:nullsterogen_malt_balls",
   "criteria": {
     "enlightened_pill": {
       "conditions": {

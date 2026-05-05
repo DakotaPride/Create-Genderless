@@ -1,0 +1,8 @@
+{
+    "type": "minecraft:stonecutting",
+    "count": 1,
+    "ingredient": {
+        "item": "creategenderless:gilded_rosary_block"
+    },
+    "result": "creategenderless:gilded_rosary_bricks"
+}

@@ -1,11 +1,13 @@
 package net.dakotapride.creategenderless.mixin;
 
-import net.dakotapride.creategenderless.registry.CreateGenderlessConfig;
+import net.dakotapride.creategenderless.CreateGenderlessConfigs;
 import net.dakotapride.creategenderless.registry.CreateGenderlessMobEffects;
 import net.dakotapride.creategenderless.registry.CreateGenderlessParticleTypes;
 import net.dakotapride.creategenderless.registry.CreateGenderlessTags;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -28,9 +30,22 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Inject(method = "canBeSeenAsEnemy", at = @At("HEAD"), cancellable = true)
     private void canBeSeenAsEnemy(CallbackInfoReturnable<Boolean> cir) {
-        // !livingEntity.hasEffect(CreateGenderlessMobEffects.UNIFIED.get()))
-        if (livingEntity.hasEffect(CreateGenderlessMobEffects.UNIFIED.get()) && CreateGenderlessConfig.UNIFIED_CANCEL_ATTACKS.get())
+        if (livingEntity.hasEffect(CreateGenderlessMobEffects.UNIFIED.get()) && CreateGenderlessConfigs.server().unifedMobEffectConfig.UNIFIED_CANCEL_ATTACKS.get())
             cir.setReturnValue(false);
+    }
+
+    @Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
+    private void hurt(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        Entity attacker = source.getEntity();
+        if (attacker instanceof LivingEntity living) {
+            if (living.hasEffect(CreateGenderlessMobEffects.UNIFIED.get())
+                    && CreateGenderlessConfigs.server().unifedMobEffectConfig.UNIFIED_CANCEL_ATTACKS.get())
+                cir.setReturnValue(false);
+            else if (living.hasEffect(CreateGenderlessMobEffects.FIERCE.get()))
+                livingEntity.setSecondsOnFire(4);
+            else if (living.hasEffect(CreateGenderlessMobEffects.CROAKED.get()))
+                livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON, 120, 0));
+        }
     }
 
     @Inject(method = "die", at = @At("HEAD"))

@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:needle"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.needle"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.needle.desc"
+    },
+    "frame": "task",
+    "announce_to_chat": true,
+    "hidden": false,
+    "show_toast": true
+  },
+  "parent": "creategenderless:mask",
+  "criteria": {
+    "needle": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "creategenderless:needle"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "needle"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

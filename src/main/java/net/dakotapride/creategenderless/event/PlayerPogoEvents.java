@@ -1,7 +1,7 @@
 package net.dakotapride.creategenderless.event;
 
+import net.dakotapride.creategenderless.CreateGenderlessConfigs;
 import net.dakotapride.creategenderless.registry.CreateGenderlessAdvancementCriteria;
-import net.dakotapride.creategenderless.registry.CreateGenderlessConfig;
 import net.dakotapride.creategenderless.registry.CreateGenderlessMobEffects;
 import net.dakotapride.creategenderless.registry.CreateGenderlessTags;
 import net.minecraft.core.Direction;
@@ -31,6 +31,9 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber
 public class PlayerPogoEvents {
 
+    // IMPLEMENT BIND CREST BUTTON
+    // IMPLEMENT CRESTS WITH SPECIAL ATTRIBUTES
+
     @SubscribeEvent
     public static void handlePogoFallDamage(LivingHurtEvent event) {
         LivingEntity entity = event.getEntity();
@@ -38,7 +41,7 @@ public class PlayerPogoEvents {
         DamageSource source = event.getSource();
 
         if (source.is(DamageTypeTags.IS_FALL) && entity.hasEffect(CreateGenderlessMobEffects.ENBY_POWER.get())) {
-            float newAmountMult = CreateGenderlessConfig.POGO_FALL_DAMAGE_MULTIPLIER.get().floatValue() / (entity.getEffect(CreateGenderlessMobEffects.ENBY_POWER.get()).getAmplifier() + 1);
+            float newAmountMult = CreateGenderlessConfigs.server().pogoMechanicsConfig.POGO_FALL_DAMAGE_MULTIPLIER.get().floatValue() / (entity.getEffect(CreateGenderlessMobEffects.ENBY_POWER.get()).getAmplifier() + 1);
             // 0.25F / (0 + 1) = 0.25 / 1 = 0.25 or 25%
             // 0.25F / (1 + 1) = 0.25 / 2 = 0.125 or ~13%
 
@@ -58,11 +61,11 @@ public class PlayerPogoEvents {
 
         MobEffect effect = CreateGenderlessMobEffects.ENBY_POWER.get();
 
-        if (stack.is(ItemTags.SWORDS)
-                && (target instanceof LivingEntity || target instanceof EndCrystal)
+        if (CreateGenderlessTags.ItemTags.ITEMS_THAT_ALLOW_POGOING.matches(stack)
+                && !CreateGenderlessTags.EntityTypeTags.NONPOGOABLE_CREATURES.matches(target)
                 && player.hasEffect(effect)
                 && !player.getCooldowns().isOnCooldown(stack.getItem())) {
-            float yDeltaMovement = (player.isShiftKeyDown() ? CreateGenderlessConfig.POGO_SHIFTING_MULTIPLIER.get().floatValue() : CreateGenderlessConfig.POGO_BASE_MULTIPLIER.get().floatValue()) + ((float) player.getEffect(effect).getAmplifier() * 0.15F);
+            float yDeltaMovement = (player.isShiftKeyDown() ? CreateGenderlessConfigs.server().pogoMechanicsConfig.POGO_SHIFTING_MULTIPLIER.get().floatValue() : CreateGenderlessConfigs.server().pogoMechanicsConfig.POGO_BASE_MULTIPLIER.get().floatValue()) + ((float) player.getEffect(effect).getAmplifier() * 0.15F);
             player.setDeltaMovement(player.getDeltaMovement().with(Direction.Axis.Y, yDeltaMovement));
             player.level().playSound(player, player, SoundEvents.ANVIL_BREAK, SoundSource.PLAYERS, 1.0F, 1.0F);
             player.getCooldowns().addCooldown(stack.getItem(), 10);
@@ -85,7 +88,7 @@ public class PlayerPogoEvents {
         MobEffect effect = CreateGenderlessMobEffects.ENBY_POWER.get();
 
         // holy fuck this is an organised mess
-        if (stack.is(ItemTags.SWORDS)
+        if (CreateGenderlessTags.ItemTags.ITEMS_THAT_ALLOW_POGOING.matches(stack)
                 && (CreateGenderlessTags.BlockTags.POGOABLE.matches(state)
 
                 || (state.is(BlockTags.WALLS)
@@ -101,7 +104,7 @@ public class PlayerPogoEvents {
                 && !state.getValue(PipeBlock.SOUTH)))
                 && player.hasEffect(effect)
                 && !player.getCooldowns().isOnCooldown(stack.getItem())) {
-            float yDeltaMovement = (player.isShiftKeyDown() ? CreateGenderlessConfig.POGO_SHIFTING_MULTIPLIER.get().floatValue() : CreateGenderlessConfig.POGO_BASE_MULTIPLIER.get().floatValue()) + ((float) player.getEffect(effect).getAmplifier() * 0.15F);
+            float yDeltaMovement = (player.isShiftKeyDown() ? CreateGenderlessConfigs.server().pogoMechanicsConfig.POGO_SHIFTING_MULTIPLIER.get().floatValue() : CreateGenderlessConfigs.server().pogoMechanicsConfig.POGO_BASE_MULTIPLIER.get().floatValue()) + ((float) player.getEffect(effect).getAmplifier() * 0.15F);
 
             player.setDeltaMovement(player.getDeltaMovement().with(Direction.Axis.Y, yDeltaMovement));
             event.getLevel().playSound(player, player, SoundEvents.ANVIL_BREAK, SoundSource.PLAYERS, 1.0F, 1.0F);

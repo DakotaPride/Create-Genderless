@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:mask"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.mask"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.mask.desc"
+    },
+    "frame": "task",
+    "announce_to_chat": true,
+    "hidden": false,
+    "show_toast": true
+  },
+  "parent": "creategenderless:lumarfly_capture",
+  "criteria": {
+    "mask": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "creategenderless:mask"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "mask"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

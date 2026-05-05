@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:lumarfly_bottle"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.lumarfly_repopulation"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.lumarfly_repopulation.desc"
+    },
+    "frame": "task",
+    "announce_to_chat": true,
+    "hidden": true,
+    "show_toast": true
+  },
+  "parent": "creategenderless:silk",
+  "criteria": {
+    "lumarfly_repopulation": {
+      "trigger": "creategenderless:lumarfly_repopulation"
+    }
+  },
+  "requirements": [
+    [
+      "lumarfly_repopulation"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

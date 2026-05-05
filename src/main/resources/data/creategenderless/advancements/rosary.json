@@ -1,0 +1,40 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:gilded_rosary"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.rosary"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.rosary.desc"
+    },
+    "frame": "task",
+    "announce_to_chat": true,
+    "hidden": false,
+    "show_toast": true
+  },
+  "parent": "creategenderless:silk",
+  "criteria": {
+    "rosary": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "creategenderless:gilded_rosary",
+              "creategenderless:steel_rosary",
+              "creategenderless:pale_rosary"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "rosary"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

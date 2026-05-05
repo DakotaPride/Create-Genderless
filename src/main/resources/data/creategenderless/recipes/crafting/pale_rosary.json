@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "creategenderless:silk"
+    },
+    "A": {
+      "item": "creategenderless:steel_rosary"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#A#",
+    " # "
+  ],
+  "result": {
+    "item": "creategenderless:pale_rosary"
+  },
+  "show_notification": true
+}

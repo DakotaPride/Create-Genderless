@@ -3,13 +3,10 @@ package net.dakotapride.creategenderless.registry;
 import com.simibubi.create.content.decoration.palettes.ConnectedPillarBlock;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import com.tterrag.registrate.util.entry.ItemEntry;
 import net.dakotapride.creategenderless.CreateGenderlessMod;
+import net.dakotapride.creategenderless.block.SilkSpoolBlock;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
 public class CreateGenderlessBlocks {
@@ -25,7 +22,7 @@ public class CreateGenderlessBlocks {
             //.properties(BlockBehaviour.Properties::noOcclusion)
             .simpleItem().register();
     public static final BlockEntry<Block> BINARY_BLOCK = CreateGenderlessMod.registrate().block("binary_block", Block::new)
-            .initialProperties(() -> Blocks.DEEPSLATE).properties(properties -> properties.mapColor(MapColor.TERRACOTTA_GREEN))
+            .initialProperties(() -> Blocks.DEEPSLATE).properties(properties -> properties.mapColor(MapColor.TERRACOTTA_GREEN).noCollission().requiresCorrectToolForDrops())
             .simpleItem().register();
     public static final BlockEntry<Block> LUMAR_IRON_BLOCK = CreateGenderlessMod.registrate().block("lumar_iron_block", Block::new)
             .initialProperties(() -> Blocks.IRON_BLOCK).properties(properties -> properties.mapColor(MapColor.WOOL))
@@ -113,6 +110,57 @@ public class CreateGenderlessBlocks {
             .initialProperties(() -> Blocks.DEEPSLATE)
             .simpleItem()
             .register();
+
+    public static final BlockEntry<Block> GILDED_ROSARY_BLOCK = CreateGenderlessMod.registrate().block("gilded_rosary_block", Block::new)
+            .initialProperties(() -> Blocks.GOLD_BLOCK).properties(properties -> properties.mapColor(MapColor.COLOR_ORANGE))
+            .simpleItem().register();
+    public static final BlockEntry<Block> GILDED_ROSARY_BRICKS = CreateGenderlessMod.registrate().block("gilded_rosary_bricks", Block::new)
+            .initialProperties(() -> Blocks.GOLD_BLOCK).properties(properties -> properties.mapColor(MapColor.COLOR_ORANGE))
+            .simpleItem().register();
+    public static final BlockEntry<Block> STEEL_ROSARY_BLOCK = CreateGenderlessMod.registrate().block("steel_rosary_block", Block::new)
+            .initialProperties(() -> Blocks.IRON_BLOCK).properties(properties -> properties)
+            .simpleItem().register();
+    public static final BlockEntry<Block> STEEL_ROSARY_BRICKS = CreateGenderlessMod.registrate().block("steel_rosary_bricks", Block::new)
+            .initialProperties(() -> Blocks.IRON_BLOCK).properties(properties -> properties)
+            .simpleItem().register();
+    public static final BlockEntry<Block> PALE_ROSARY_BLOCK = CreateGenderlessMod.registrate().block("pale_rosary_block", Block::new)
+            .initialProperties(() -> Blocks.IRON_BLOCK).properties(properties -> properties.mapColor(MapColor.WOOL))
+            .simpleItem().register();
+    public static final BlockEntry<Block> PALE_ROSARY_BRICKS = CreateGenderlessMod.registrate().block("pale_rosary_bricks", Block::new)
+            .initialProperties(() -> Blocks.IRON_BLOCK).properties(properties -> properties.mapColor(MapColor.WOOL))
+            .simpleItem().register();
+
+    public static final BlockEntry<Block> SILK_BLOCK = CreateGenderlessMod.registrate().block("silk_block", Block::new)
+            .initialProperties(() -> Blocks.WHITE_WOOL).properties(properties -> properties.friction(0.8F))
+            .simpleItem().register();
+    public static final BlockEntry<Block> SILKY_BRICKS = CreateGenderlessMod.registrate().block("silky_bricks", Block::new)
+            .initialProperties(() -> Blocks.WHITE_WOOL).properties(properties -> properties.friction(0.8F))
+            .simpleItem().register();
+    public static final BlockEntry<SilkSpoolBlock> SILK_SPOOL = CreateGenderlessMod.registrate().block("silk_spool", SilkSpoolBlock::new)
+            .initialProperties(() -> Blocks.DARK_OAK_PLANKS).properties(properties -> properties.sound(SoundType.WOOL))
+            .simpleItem().register();
+
+    public static final BlockEntry<Block> DECAYED_WOODEN_PLANKS = CreateGenderlessMod.registrate().block("decayed_wooden_planks", Block::new)
+            .initialProperties(() -> Blocks.OAK_PLANKS).properties(properties -> properties.mapColor(MapColor.TERRACOTTA_BLACK))
+            .simpleItem().register();
+    public static final BlockEntry<Block> DECAYING_LOG = CreateGenderlessMod.registrate().block("decaying_log", Block::new)
+            .addLayer(() -> RenderType::translucent)
+            .initialProperties(() -> Blocks.MANGROVE_LOG).properties(properties -> properties.mapColor(MapColor.TERRACOTTA_BROWN))
+            .simpleItem().register();
+
+    public static final BlockEntry<Block> ORDAINED_CHALICE_GOLD_BLOCK = CreateGenderlessMod.registrate().block("ordained_chalice_gold_block", Block::new)
+            .initialProperties(() -> Blocks.GOLD_BLOCK).properties(properties -> properties.mapColor(MapColor.TERRACOTTA_YELLOW))
+            .simpleItem().register();
+    public static final BlockEntry<TrapDoorBlock> ORDAINED_CHALICE_GOLD_TRAPDOOR = CreateGenderlessMod.registrate().block("ordained_chalice_gold_trapdoor", properties -> new TrapDoorBlock(properties, CreateGenderlessBlockSetTypes.ORDAINED_CHALICE_GOLD))
+            .initialProperties(() -> Blocks.GOLD_BLOCK).properties(properties -> properties.noOcclusion().isValidSpawn((state, block, pos, entityType) -> false).mapColor(MapColor.TERRACOTTA_YELLOW))
+            .simpleItem().register();
+
+    public static final BlockEntry<Block> HONED_STEEL_BLOCK = CreateGenderlessMod.registrate().block("honed_steel_block", Block::new)
+            .initialProperties(() -> Blocks.GOLD_BLOCK).properties(properties -> properties.mapColor(MapColor.TERRACOTTA_YELLOW))
+            .simpleItem().register();
+    public static final BlockEntry<TrapDoorBlock> HONED_STEEL_TRAPDOOR = CreateGenderlessMod.registrate().block("honed_steel_trapdoor", properties -> new TrapDoorBlock(properties, CreateGenderlessBlockSetTypes.ORDAINED_CHALICE_GOLD))
+            .initialProperties(() -> Blocks.IRON_BLOCK).properties(properties -> properties.noOcclusion().isValidSpawn((state, block, pos, entityType) -> false).mapColor(MapColor.TERRACOTTA_LIGHT_BLUE))
+            .simpleItem().register();
 
     public static void transRights() {}
 }

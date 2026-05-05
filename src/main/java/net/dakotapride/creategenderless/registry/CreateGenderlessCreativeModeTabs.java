@@ -14,19 +14,30 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class CreateGenderlessCreativeModeTabs {
     private static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
-            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, CreateGenderlessMod.ID);
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, CreateGenderlessMod.MOD_ID);
 
     public static final RegistryObject<CreativeModeTab> CREATIVE_MODE_TAB = CREATIVE_MODE_TABS.register("creative_mode_tab",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.creategenderless.creative_mode_tab"))
                     .icon(CreateGenderlessItems.GENDERLESS_PILL::asStack)
                     .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(CreateGenderlessItems.BASIC_CREST);
+                        output.accept(CreateGenderlessItems.PYROMANIAC_CREST);
+                        output.accept(CreateGenderlessItems.MUCKED_CREST);
+                        output.accept(CreateGenderlessItems.FAITHFUL_CREST);
+
+                        output.accept(CreateGenderlessItems.MASK);
+                        output.accept(CreateGenderlessItems.NEEDLE);
+
                         output.accept(CreateGenderlessItems.GENDERLESS_PILL);
                         output.accept(CreateGenderlessItems.ENLIGHTENED_PILL);
                         output.accept(CreateGenderlessItems.VOID_PILL);
                         output.accept(CreateGenderlessItems.NULLSTEROGEN_MALT_BALLS);
                         output.accept(CreateGenderlessItems.GENDERSLIME_BALL);
                         output.accept(CreateGenderlessItems.SHELLROCK_RUBBLE);
+                        output.accept(CreateGenderlessItems.GILDED_ROSARY);
+                        output.accept(CreateGenderlessItems.STEEL_ROSARY);
+                        output.accept(CreateGenderlessItems.PALE_ROSARY);
                         output.accept(CreateGenderlessItems.LUMARFLY_BOTTLE);
                         output.accept(CreateGenderlessItems.LUMAR_IRON_INGOT);
                         output.accept(CreateGenderlessItems.LUMAR_IRON_NUGGET);
@@ -40,6 +51,7 @@ public class CreateGenderlessCreativeModeTabs {
                         output.accept(CreateGenderlessFluids.DILUTED_SOUL.get().getBucket());
                         output.accept(tippedArrow(CreateGenderlessPotions.ENBY_POWER_POTION.get()));
                         output.accept(CreateGenderlessItems.LUMARFLY_SPAWN_EGG);
+                        output.accept(CreateGenderlessItems.SILK);
 
                         output.accept(CreateGenderlessBlocks.SHELLROCK.get());
                         output.accept(CreateGenderlessBlocks.CUT_SHELLROCK.get());
@@ -60,6 +72,20 @@ public class CreateGenderlessCreativeModeTabs {
                         output.accept(CreateGenderlessBlocks.SMALL_SHELLROCK_BRICK_WALL.get());
                         output.accept(CreateGenderlessBlocks.LAYERED_SHELLROCK.get());
                         output.accept(CreateGenderlessBlocks.SHELLROCK_PILLAR.get());
+                        output.accept(CreateGenderlessBlocks.GILDED_ROSARY_BLOCK.get());
+                        output.accept(CreateGenderlessBlocks.GILDED_ROSARY_BRICKS.get());
+                        output.accept(CreateGenderlessBlocks.STEEL_ROSARY_BLOCK.get());
+                        output.accept(CreateGenderlessBlocks.STEEL_ROSARY_BRICKS.get());
+                        output.accept(CreateGenderlessBlocks.PALE_ROSARY_BLOCK.get());
+                        output.accept(CreateGenderlessBlocks.PALE_ROSARY_BRICKS.get());
+                        output.accept(CreateGenderlessBlocks.SILK_BLOCK.get());
+                        output.accept(CreateGenderlessBlocks.SILKY_BRICKS.get());
+                        output.accept(CreateGenderlessBlocks.SILK_SPOOL.get());
+                        output.accept(CreateGenderlessBlocks.ORDAINED_CHALICE_GOLD_BLOCK.get());
+                        output.accept(CreateGenderlessBlocks.ORDAINED_CHALICE_GOLD_TRAPDOOR.get());
+                        output.accept(CreateGenderlessBlocks.HONED_STEEL_BLOCK.get());
+                        output.accept(CreateGenderlessBlocks.HONED_STEEL_TRAPDOOR.get());
+                        output.accept(CreateGenderlessBlocks.DECAYED_WOODEN_PLANKS.get());
                     })
                     .build());
 

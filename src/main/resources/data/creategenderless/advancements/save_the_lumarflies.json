@@ -14,7 +14,7 @@
     "hidden": true,
     "show_toast": true
   },
-  "parent": "creategenderless:lumarfly_capture",
+  "parent": "creategenderless:lumarfly_repopulation",
   "criteria": {
     "save_the_653_lumarflies": {
       "trigger": "creategenderless:save_the_lumarflies"

@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "creategenderless:silk_spool"
+    },
+    "title": {
+      "translate": "advancement.creategenderless.silk_spool"
+    },
+    "description": {
+      "translate": "advancement.creategenderless.silk_spool.desc"
+    },
+    "frame": "task",
+    "announce_to_chat": true,
+    "hidden": false,
+    "show_toast": true
+  },
+  "parent": "creategenderless:silk",
+  "criteria": {
+    "silk_spool": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "creategenderless:silk_spool"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "silk_spool"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

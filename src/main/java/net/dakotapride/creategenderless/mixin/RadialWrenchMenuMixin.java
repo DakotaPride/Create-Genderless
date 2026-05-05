@@ -1,0 +1,26 @@
+// Credit to https://github.com/VoidLeech/Repair/blob/4a02dc1f5ad6bb9ce79f25c96c57df68aece28a2/src/main/java/ch/voidlee/repair/mixin/client/bug_fixes/RadialWrenchMenuMixin.java
+
+package net.dakotapride.creategenderless.mixin;
+
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.simibubi.create.content.contraptions.wrench.RadialWrenchMenu;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+
+// https://github.com/Creators-of-Create/Create/issues/9608
+@Mixin(RadialWrenchMenu.class)
+public abstract class RadialWrenchMenuMixin {
+    @WrapOperation(method = "renderRadialSectors", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/entity/BlockEntity;getLevel()Lnet/minecraft/world/level/Level;", remap = true), remap = false)
+    private Level create_repair$maybeThereIsNoLevel(BlockEntity blockEntity, Operation<Level> original) {
+        return blockEntity != null ? original.call(blockEntity) : null;
+    }
+
+    @WrapWithCondition(method = "renderRadialSectors", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/entity/BlockEntity;setLevel(Lnet/minecraft/world/level/Level;)V", remap = true), remap = false)
+    private boolean create_repair$onlyIfTheBlockEntityExists(BlockEntity blockEntity, Level level) {
+        return blockEntity != null;
+    }
+}
