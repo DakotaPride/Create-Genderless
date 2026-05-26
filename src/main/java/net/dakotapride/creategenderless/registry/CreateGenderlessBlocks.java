@@ -143,8 +143,7 @@ public class CreateGenderlessBlocks {
     public static final BlockEntry<Block> DECAYED_WOODEN_PLANKS = CreateGenderlessMod.registrate().block("decayed_wooden_planks", Block::new)
             .initialProperties(() -> Blocks.OAK_PLANKS).properties(properties -> properties.mapColor(MapColor.TERRACOTTA_BLACK))
             .simpleItem().register();
-    public static final BlockEntry<Block> DECAYING_LOG = CreateGenderlessMod.registrate().block("decaying_log", Block::new)
-            .addLayer(() -> RenderType::translucent)
+    public static final BlockEntry<RotatedPillarBlock> DECAYING_LOG = CreateGenderlessMod.registrate().block("decaying_log", RotatedPillarBlock::new)
             .initialProperties(() -> Blocks.MANGROVE_LOG).properties(properties -> properties.mapColor(MapColor.TERRACOTTA_BROWN))
             .simpleItem().register();
 
@@ -160,6 +159,19 @@ public class CreateGenderlessBlocks {
             .simpleItem().register();
     public static final BlockEntry<TrapDoorBlock> HONED_STEEL_TRAPDOOR = CreateGenderlessMod.registrate().block("honed_steel_trapdoor", properties -> new TrapDoorBlock(properties, CreateGenderlessBlockSetTypes.ORDAINED_CHALICE_GOLD))
             .initialProperties(() -> Blocks.IRON_BLOCK).properties(properties -> properties.noOcclusion().isValidSpawn((state, block, pos, entityType) -> false).mapColor(MapColor.TERRACOTTA_LIGHT_BLUE))
+            .simpleItem().register();
+
+    public static final BlockEntry<Block> ROYAL_BRICKS = CreateGenderlessMod.registrate().block("royal_bricks", Block::new)
+            .initialProperties(() -> Blocks.CALCITE)
+            .simpleItem().register();
+    public static final BlockEntry<Block> CRACKED_ROYAL_BRICKS = CreateGenderlessMod.registrate().block("cracked_royal_bricks", Block::new)
+            .initialProperties(() -> Blocks.CALCITE)
+            .simpleItem().register();
+    public static final BlockEntry<Block> OVERGROWN_ROYAL_BRICKS = CreateGenderlessMod.registrate().block("overgrown_royal_bricks", Block::new)
+            .initialProperties(() -> Blocks.CALCITE)
+            .simpleItem().register();
+    public static final BlockEntry<Block> GILDED_ROYAL_BRICKS = CreateGenderlessMod.registrate().block("gilded_royal_bricks", Block::new)
+            .initialProperties(() -> Blocks.CALCITE)
             .simpleItem().register();
 
     public static void transRights() {}

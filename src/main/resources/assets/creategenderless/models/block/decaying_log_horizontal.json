@@ -1,5 +1,5 @@
 {
-	"parent": "minecraft:block/cube_column",
+	"parent": "minecraft:block/cube_column_horizontal",
 	"textures": {
 		"end": "creategenderless:block/decaying_log_top",
 		"side": "creategenderless:block/decaying_log"

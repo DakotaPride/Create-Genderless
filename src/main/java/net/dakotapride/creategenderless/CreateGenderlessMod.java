@@ -7,6 +7,10 @@ import com.simibubi.create.foundation.item.ItemDescription;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.createmod.catnip.lang.FontHelper;
 import net.dakotapride.creategenderless.block.SilkSpoolBlock;
+import net.dakotapride.creategenderless.entity.client.leafkin.blossom.LeafkinBlossomModel;
+import net.dakotapride.creategenderless.entity.client.leafkin.blossom.LeafkinBlossomRenderer;
+import net.dakotapride.creategenderless.entity.client.leafkin.slabber.LeafkinSlabberModel;
+import net.dakotapride.creategenderless.entity.client.leafkin.slabber.LeafkinSlabberRenderer;
 import net.dakotapride.creategenderless.entity.client.lumarfly.LumarflyModel;
 import net.dakotapride.creategenderless.entity.client.lumarfly.LumarflyRenderer;
 import net.dakotapride.creategenderless.entity.client.leafkin.LeafkinModel;
@@ -109,6 +113,8 @@ public class CreateGenderlessMod {
         public static void onClientSetup(FMLClientSetupEvent event) {
             EntityRenderers.register(CreateGenderlessEntityTypes.LUMARFLY.get(), LumarflyRenderer::new);
             EntityRenderers.register(CreateGenderlessEntityTypes.LEAFKIN.get(), LeafkinRenderer::new);
+            EntityRenderers.register(CreateGenderlessEntityTypes.LEAFKIN_SLABBER.get(), LeafkinSlabberRenderer::new);
+            EntityRenderers.register(CreateGenderlessEntityTypes.LEAFKIN_BLOSSOM.get(), LeafkinBlossomRenderer::new);
         }
 
         @SubscribeEvent
@@ -120,6 +126,8 @@ public class CreateGenderlessMod {
         public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
             event.registerLayerDefinition(LumarflyModel.LAYER_LOCATION, LumarflyModel::createBodyLayer);
             event.registerLayerDefinition(LeafkinModel.LAYER_LOCATION, LeafkinModel::createBodyLayer);
+            event.registerLayerDefinition(LeafkinSlabberModel.LAYER_LOCATION, LeafkinSlabberModel::createBodyLayer);
+            event.registerLayerDefinition(LeafkinBlossomModel.LAYER_LOCATION, LeafkinBlossomModel::createBodyLayer);
         }
     }
 

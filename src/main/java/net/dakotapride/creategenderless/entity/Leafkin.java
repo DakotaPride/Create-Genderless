@@ -1,17 +1,14 @@
 package net.dakotapride.creategenderless.entity;
 
-import net.dakotapride.creategenderless.CreateGenderlessMod;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
@@ -19,36 +16,24 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Locale;
-
-public class Leafkin extends Monster {
-    protected static final EntityDataAccessor<Boolean> IDLE = SynchedEntityData.defineId(Leafkin.class, EntityDataSerializers.BOOLEAN);
-    protected static final EntityDataAccessor<Boolean> ATTACKING = SynchedEntityData.defineId(Leafkin.class, EntityDataSerializers.BOOLEAN);
+public class Leafkin extends AbstractLeafkinMob {
     protected static final EntityDataAccessor<Boolean> SPOT_PREY = SynchedEntityData.defineId(Leafkin.class, EntityDataSerializers.BOOLEAN);
     protected static final EntityDataAccessor<Boolean> RETURN_TO_WAIT = SynchedEntityData.defineId(Leafkin.class, EntityDataSerializers.BOOLEAN);
     protected static final EntityDataAccessor<Boolean> SHEDDING = SynchedEntityData.defineId(Leafkin.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Leafkin.class, EntityDataSerializers.INT);
 
-    public final AnimationState idleAnimationState = new AnimationState();
     public final AnimationState spotPreyAnimationState = new AnimationState();
     public final AnimationState returnToWaitAnimationState = new AnimationState();
-    public final AnimationState attackAnimationState = new AnimationState();
     public final AnimationState sheddingAnimationState = new AnimationState();
-    private int idleAnimationTimeout = 0;
     private int spotPreyAnimationTimeout = 0;
-    private int attackAnimationTimeout = 0;
     private int returnToWaitPositionAnimationTimeout = 0;
-    public Leafkin(EntityType<? extends Monster> entityType, Level level) {
+    public Leafkin(EntityType<? extends AbstractLeafkinMob> entityType, Level level) {
         super(entityType, level);
     }
 
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(IDLE, false);
-        this.entityData.define(ATTACKING, false);
         this.entityData.define(SPOT_PREY, false);
         this.entityData.define(RETURN_TO_WAIT, false);
         this.entityData.define(SHEDDING, false);
@@ -87,22 +72,6 @@ public class Leafkin extends Monster {
         return super.finalizeSpawn(level, difficulty, mobSpawnType, spawnGroupData, compoundTag);
     }
 
-    public boolean isIdle() {
-        return this.entityData.get(IDLE);
-    }
-
-    public void setIdle(boolean b) {
-        this.entityData.set(IDLE, b);
-    }
-
-    public boolean isAttacking() {
-        return this.entityData.get(ATTACKING);
-    }
-
-    public void setAttacking(boolean b) {
-        this.entityData.set(ATTACKING, b);
-    }
-
     public boolean hasSpotPrey() {
         return this.entityData.get(SPOT_PREY);
     }
@@ -129,7 +98,7 @@ public class Leafkin extends Monster {
 
     @Override
     public void registerGoals() {
-        this.goalSelector.addGoal(4, new LeafkinMeleeAttackGoal(this, 0.85F, true));
+        this.goalSelector.addGoal(4, new LeafkinMeleeAttackGoal((int) (20 * 0.5417F), (int) (20 * 0.2916F), this, 0.85F, true));
         this.targetSelector.addGoal(2, new LeafkinNearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
@@ -138,19 +107,31 @@ public class Leafkin extends Monster {
         return 1.2F;
     }
 
+    public void resetAnims() {
+        //this.idleAnimationState.stop();
+        this.spotPreyAnimationState.stop();
+        this.returnToWaitAnimationState.stop();
+        this.attackAnimationState.stop();
+    }
+
     @Override
     public void tick() {
         super.tick();
-
-        if (this.level().isClientSide()) {
-            setupAnimationStates();
+        if (this.ticksUntilReturnToWaitAnimMustHalt > 0) {
+            --this.ticksUntilReturnToWaitAnimMustHalt;
+            this.idleAnimationState.stop();
         }
+        if (this.ticksUntilReturnToWaitAnimMustHalt <= 0)
+            this.setToWaitPosition(false);
     }
 
-    private void setupAnimationStates() {
-        if (!this.walkAnimation.isMoving()) {
+    @Override
+    public void setupAnimationStates() {
+        if (!this.walkAnimation.isMoving() && !this.isAttacking()) {
             this.setIdle(true);
             if (this.idleAnimationTimeout <= 0) {
+                //this.returnToWaitAnimationState.stop();
+                this.resetAnims();
                 this.idleAnimationTimeout = 45;
                 this.idleAnimationState.start(this.tickCount);
             } else {
@@ -163,7 +144,7 @@ public class Leafkin extends Monster {
         }
 
         if (this.isAttacking() && this.attackAnimationTimeout <= 0) {
-            this.attackAnimationTimeout = (int) (2.0F*(20 * 0.8333F));
+            this.attackAnimationTimeout = (int) (20 * 0.8333F);
             this.attackAnimationState.start(this.tickCount);
         } else {
             --this.attackAnimationTimeout;
@@ -174,146 +155,68 @@ public class Leafkin extends Monster {
                 this.idleAnimationState.stop();
                 this.spotPreyAnimationTimeout = 30;
                 this.spotPreyAnimationState.start(this.tickCount);
-                if (this.isAlive()) {
-                    CreateGenderlessMod.LOGGER.info("[{}] Prey Spotted: {}", CreateGenderlessMod.MOD_ID, Leafkin.this.hasSpotPrey());
-                    CreateGenderlessMod.LOGGER.info("[{}] Prey Spotted Anim Timeout: {}", CreateGenderlessMod.MOD_ID, Leafkin.this.spotPreyAnimationTimeout);
-                }
             }
-
-            this.setHasSpottedPrey(false);
         }
         if (this.spotPreyAnimationTimeout > 0)
             --this.spotPreyAnimationTimeout;
+
+        if (this.canReturnToWaitingPosition()) {
+            if (this.returnToWaitPositionAnimationTimeout <= 0) {
+                //this.idleAnimationState.stop();
+                this.returnToWaitPositionAnimationTimeout = 20;
+                this.returnToWaitAnimationState.start(this.tickCount);
+            }
+        }
+        if (this.returnToWaitPositionAnimationTimeout > 0)
+            --this.returnToWaitPositionAnimationTimeout;
+
+        //this.returnToWaitAnimationState.animateWhen(this.canReturnToWaitingPosition(), this.tickCount);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
-                .add(Attributes.ATTACK_DAMAGE, 2.0D)
-                .add(Attributes.MAX_HEALTH, 5.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.4F);
+                .add(Attributes.ATTACK_DAMAGE, 6.0D)
+                .add(Attributes.MAX_HEALTH, 24.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.4F)
+                .add(Attributes.FOLLOW_RANGE, 24.0D);
     }
 
+    private int ticksUntilSpotPreyAnimNoLongerApplicable = 15;
+    private int ticksUntilReturnToWaitAnimMustHalt = 10;
     public class LeafkinNearestAttackableTargetGoal<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
         public LeafkinNearestAttackableTargetGoal(Mob mob, Class<T> target, boolean canSee) {
             super(mob, target, canSee);
         }
 
         @Override
+        public void tick() {
+            super.tick();
+
+            if (Leafkin.this.ticksUntilSpotPreyAnimNoLongerApplicable > 0)
+                --Leafkin.this.ticksUntilSpotPreyAnimNoLongerApplicable;
+
+            if (Leafkin.this.ticksUntilSpotPreyAnimNoLongerApplicable <= 0)
+                Leafkin.this.setHasSpottedPrey(false);
+        }
+
+        @Override
         public void start() {
             super.start();
+            Leafkin.this.setToWaitPosition(false);
+
+            Leafkin.this.ticksUntilSpotPreyAnimNoLongerApplicable = 15;
 
             Leafkin.this.setHasSpottedPrey(true);
             Leafkin.this.spotPreyAnimationTimeout = 0;
-            if (Leafkin.this.isAlive()) {
-                CreateGenderlessMod.LOGGER.info("[{}] start- Prey Spotted: {}", CreateGenderlessMod.MOD_ID, Leafkin.this.hasSpotPrey());
-                CreateGenderlessMod.LOGGER.info("[{}] start- Prey Spotted Anim Timeout: {}", CreateGenderlessMod.MOD_ID, Leafkin.this.spotPreyAnimationTimeout);
-            }
-        }
-    }
-
-    public class LeafkinMeleeAttackGoal extends MeleeAttackGoal {
-        private int attackDelay = (int) (2.0F*(20 * 0.5417F));
-        private int ticksUntilNextAttack = (int) (2.0F*(20 * 0.2916F));
-        private boolean shouldCountTillNextAttack = false;
-        public LeafkinMeleeAttackGoal(PathfinderMob mob, double speed, boolean followIfNotSeen) {
-            super(mob, speed, followIfNotSeen);
-        }
-
-        @Override
-        public void start() {
-            super.start();
-            attackDelay = (int) (2.0F*(20 * 0.5417F));
-            ticksUntilNextAttack = (int) (2.0F*(20 * 0.2916F));
-        }
-
-        @Override
-        protected void checkAndPerformAttack(LivingEntity pEnemy, double pDistToEnemySqr) {
-            if (isEnemyWithinAttackDistance(pEnemy, pDistToEnemySqr)) {
-                shouldCountTillNextAttack = true;
-
-                if (isTimeToStartAttackAnimation()) {
-                    Leafkin.this.setAttacking(true);
-                }
-
-                if (isTimeToAttack()) {
-                    this.mob.getLookControl().setLookAt(pEnemy.getX(), pEnemy.getEyeY(), pEnemy.getZ());
-                    performAttack(pEnemy);
-                }
-            } else {
-                resetAttackCooldown();
-                shouldCountTillNextAttack = false;
-                Leafkin.this.setAttacking(false);
-                Leafkin.this.attackAnimationTimeout = 0;
-            }
-        }
-
-        private boolean isEnemyWithinAttackDistance(LivingEntity pEnemy, double pDistToEnemySqr) {
-            return pDistToEnemySqr <= this.getAttackReachSqr(pEnemy);
-        }
-
-        protected void resetAttackCooldown() {
-            this.ticksUntilNextAttack = this.adjustedTickDelay(attackDelay * 2);
-        }
-
-        protected boolean isTimeToAttack() {
-            return this.ticksUntilNextAttack <= 0;
-        }
-
-        protected boolean isTimeToStartAttackAnimation() {
-            return this.ticksUntilNextAttack <= attackDelay;
-        }
-
-        protected int getTicksUntilNextAttack() {
-            return this.ticksUntilNextAttack;
-        }
-
-
-        protected void performAttack(LivingEntity pEnemy) {
-            this.resetAttackCooldown();
-            this.mob.swing(InteractionHand.MAIN_HAND);
-            this.mob.doHurtTarget(pEnemy);
-        }
-
-        @Override
-        public void tick() {
-            super.tick();
-            if (shouldCountTillNextAttack) {
-                this.ticksUntilNextAttack = Math.max(this.ticksUntilNextAttack - 1, 0);
-            }
         }
 
         @Override
         public void stop() {
-            Leafkin.this.setAttacking(false);
             super.stop();
-        }
-    }
+            Leafkin.this.ticksUntilReturnToWaitAnimMustHalt = 10;
 
-    public enum LeafkinVariant {
-        MARSH(0),
-        AUTUMN(1),
-        SILK_TRAPPER(2),
-
-        ;
-
-        private static final LeafkinVariant[] BY_ID = Arrays.stream(values()).sorted(Comparator.
-                comparingInt(LeafkinVariant::getId)).toArray(LeafkinVariant[]::new);
-        private final int id;
-
-        LeafkinVariant(int id) {
-            this.id = id;
-        }
-
-        public String varName() {
-            return name().toLowerCase(Locale.ROOT);
-        }
-
-        public int getId() {
-            return this.id;
-        }
-
-        public static LeafkinVariant byId(int id) {
-            return BY_ID[id % BY_ID.length];
+            Leafkin.this.setToWaitPosition(true);
+            Leafkin.this.returnToWaitPositionAnimationTimeout = 0;
         }
     }
 }

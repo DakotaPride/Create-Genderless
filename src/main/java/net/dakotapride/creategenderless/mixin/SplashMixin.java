@@ -40,7 +40,9 @@ public class SplashMixin {
             "Ass Jim",
             "Open a Bank Account With Me! ...then get scammed",
             "Daughter of Minenest",
-            "Pharcraft's Haunting"
+            "Pharcraft's Haunting",
+            "Also try Create: Estrogen!",
+            "Also try Create: Testosterone!"
     );
 
     @Shadow

@@ -51,6 +51,8 @@ public class CreateGenderlessCreativeModeTabs {
                         output.accept(CreateGenderlessFluids.DILUTED_SOUL.get().getBucket());
                         output.accept(tippedArrow(CreateGenderlessPotions.ENBY_POWER_POTION.get()));
                         output.accept(CreateGenderlessItems.LUMARFLY_SPAWN_EGG);
+                        output.accept(CreateGenderlessItems.LEAFKIN_SPAWN_EGG);
+                        output.accept(CreateGenderlessItems.LEAFKIN_SLABBER_SPAWN_EGG);
                         output.accept(CreateGenderlessItems.SILK);
 
                         output.accept(CreateGenderlessBlocks.SHELLROCK.get());
@@ -85,7 +87,12 @@ public class CreateGenderlessCreativeModeTabs {
                         output.accept(CreateGenderlessBlocks.ORDAINED_CHALICE_GOLD_TRAPDOOR.get());
                         output.accept(CreateGenderlessBlocks.HONED_STEEL_BLOCK.get());
                         output.accept(CreateGenderlessBlocks.HONED_STEEL_TRAPDOOR.get());
+                        output.accept(CreateGenderlessBlocks.DECAYING_LOG.get());
                         output.accept(CreateGenderlessBlocks.DECAYED_WOODEN_PLANKS.get());
+                        output.accept(CreateGenderlessBlocks.ROYAL_BRICKS.get());
+                        output.accept(CreateGenderlessBlocks.CRACKED_ROYAL_BRICKS.get());
+                        output.accept(CreateGenderlessBlocks.GILDED_ROYAL_BRICKS.get());
+                        output.accept(CreateGenderlessBlocks.OVERGROWN_ROYAL_BRICKS.get());
                     })
                     .build());
 

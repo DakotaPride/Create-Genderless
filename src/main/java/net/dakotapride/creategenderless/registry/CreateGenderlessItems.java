@@ -54,6 +54,11 @@ public class CreateGenderlessItems {
     public static final ItemEntry<ForgeSpawnEggItem> LUMARFLY_SPAWN_EGG = CreateGenderlessMod.registrate().item("lumarfly_spawn_egg",
             properties -> new ForgeSpawnEggItem(CreateGenderlessEntityTypes.LUMARFLY, 0xFCFEFF, 0xC9CCE4, properties)).register();
 
+    public static final ItemEntry<ForgeSpawnEggItem> LEAFKIN_SPAWN_EGG = CreateGenderlessMod.registrate().item("leafkin_spawn_egg",
+            properties -> new ForgeSpawnEggItem(CreateGenderlessEntityTypes.LEAFKIN, 0x404525, 0x2f341c, properties)).register();
+    public static final ItemEntry<ForgeSpawnEggItem> LEAFKIN_SLABBER_SPAWN_EGG = CreateGenderlessMod.registrate().item("leafkin_slabber_spawn_egg",
+            properties -> new ForgeSpawnEggItem(CreateGenderlessEntityTypes.LEAFKIN_SLABBER, 0x868a4a, 0x626737, properties)).register();
+
     private static ItemEntry<BindingCrestItem> createCrestItemEntry(CrestType type) {
         return CreateGenderlessMod.registrate().item(type.getId() + "_crest", properties -> new BindingCrestItem(type, properties)).register();
     }
